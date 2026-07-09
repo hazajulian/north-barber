@@ -3,18 +3,23 @@
 
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST || "localhost",
-  port: Number(process.env.MAIL_PORT) || 587,
-  secure: false,
+const MAIL_PORT = Number(process.env.MAIL_PORT) || 587;
 
-  auth:
-    process.env.MAIL_USER && process.env.MAIL_PASSWORD
-      ? {
-          user: process.env.MAIL_USER,
-          pass: process.env.MAIL_PASSWORD,
-        }
-      : undefined,
+const transporter = nodemailer.createTransport({
+  host: process.env.MAIL_HOST,
+  port: MAIL_PORT,
+  secure: MAIL_PORT === 465,
+
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASSWORD,
+  },
+
+  requireTLS: MAIL_PORT === 587,
+
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 15000,
 });
 
 export default transporter;

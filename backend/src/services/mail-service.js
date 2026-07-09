@@ -44,7 +44,37 @@ async function sendMail(mailOptions) {
     return;
   }
 
-  await transporter.sendMail(mailOptions);
+  try {
+    console.log("Sending mail:", {
+      to: mailOptions.to,
+      subject: mailOptions.subject,
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PORT,
+      user: process.env.MAIL_USER,
+      from: FROM_EMAIL,
+    });
+
+    const info = await transporter.sendMail(mailOptions);
+
+    console.log("Mail sent successfully:", {
+      messageId: info.messageId,
+      accepted: info.accepted,
+      rejected: info.rejected,
+      response: info.response,
+    });
+
+    return info;
+  } catch (error) {
+    console.error("Mail send failed:", {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      response: error.response,
+      responseCode: error.responseCode,
+    });
+
+    throw error;
+  }
 }
 
 export async function sendAppointmentConfirmationEmail(appointment) {
