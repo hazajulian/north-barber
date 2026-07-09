@@ -166,35 +166,29 @@
   }
 }
 
-/* Ajuste botones mobile del dashboard */
+/* Ajuste global de botones del dashboard en mobile/tablet */
 
-@media (max-width: 700px) {
-  .dashboard .btn,
-  .dashboard button {
-    min-height: 42px;
-    padding: 0 14px;
+@media (max-width: 900px) {
+  .dashboard button,
+  .dashboard .btn {
+    min-height: 40px !important;
+    max-height: 42px !important;
+    height: auto !important;
 
-    border-radius: 18px;
+    padding: 0 14px !important;
 
-    font-size: 0.88rem;
-    line-height: 1;
+    border-radius: 14px !important;
+
+    font-size: 0.86rem !important;
+    line-height: 1 !important;
+
+    align-self: center;
   }
 
   .dashboard button svg,
   .dashboard .btn svg {
     font-size: 0.9rem;
-  }
-
-  .dashboardSection__action .btn {
-    width: auto;
-    min-height: 40px;
-    padding-inline: 16px;
-  }
-}
-
-@media (max-width: 520px) {
-  .dashboard .btn {
-    min-height: 42px;
-    padding-inline: 14px;
+    width: 0.9em;
+    height: 0.9em;
   }
 }
