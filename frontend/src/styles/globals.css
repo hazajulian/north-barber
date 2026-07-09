@@ -1,0 +1,271 @@
+/* globals.css */
+/* Clases globales reutilizables y estilos base del sitio. */
+
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.container {
+  width: min(100% - 32px, var(--container-width));
+  margin-inline: auto;
+}
+
+.container--wide {
+  width: min(100% - 32px, var(--container-width-wide));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-padding-mobile);
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: var(--bg-grid);
+  background-size: 64px 64px;
+  opacity: 0.22;
+
+  pointer-events: none;
+}
+
+.section > .container,
+.section > .container--wide {
+  position: relative;
+  z-index: 2;
+}
+
+.section--light {
+  color: var(--color-text);
+  background: var(--bg-section-light);
+}
+
+.section--dark {
+  color: var(--color-text-light);
+  background: var(--bg-section-dark);
+}
+
+.text-soft {
+  color: var(--color-text-soft);
+}
+
+.text-light-soft {
+  color: var(--color-text-light-soft);
+}
+
+.title {
+  font-family: var(--font-title);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--color-gold);
+
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+
+  width: 34px;
+  height: 2px;
+
+  border-radius: var(--radius-full);
+
+  background: var(--color-gold);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: var(--radius-full);
+
+  font-size: 0.95rem;
+  font-weight: 900;
+
+  transition:
+    transform var(--transition-base),
+    background var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  color: var(--color-text-light);
+
+  border: var(--border-warm);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-gold) 0%,
+      var(--color-gold-hover) 100%
+    );
+
+  box-shadow: var(--shadow-gold);
+}
+
+.btn--primary:hover {
+  filter: brightness(1.04);
+}
+
+.btn--dark {
+  color: var(--color-text-light);
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-surface-dark) 0%,
+      var(--color-surface-dark-soft) 100%
+    );
+
+  box-shadow: var(--shadow-card);
+}
+
+.btn--dark:hover {
+  filter: brightness(1.08);
+}
+
+.btn--outline {
+  color: var(--color-text);
+
+  border: var(--border-soft);
+
+  background: rgba(255, 255, 255, 0.72);
+
+  backdrop-filter: blur(8px);
+}
+
+.btn--outline:hover {
+  background: white;
+}
+
+.btn--ghost {
+  color: var(--color-accent);
+
+  background: var(--color-accent-soft);
+}
+
+.btn--ghost:hover {
+  color: var(--color-text-light);
+
+  background: var(--color-accent);
+}
+
+.card {
+  overflow: hidden;
+
+  border: var(--border-soft);
+  border-radius: var(--radius-lg);
+
+  color: var(--color-text);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-card);
+
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: var(--shadow-panel);
+}
+
+.panel {
+  border: var(--border-soft);
+  border-radius: var(--radius-xl);
+
+  color: var(--color-text);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-panel);
+}
+
+.dark-panel {
+  color: var(--color-text-light);
+
+  border: var(--border-dark);
+  border-radius: var(--radius-xl);
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-surface-dark) 0%,
+      var(--color-surface-dark-soft) 100%
+    );
+
+  box-shadow: var(--shadow-dark);
+}
+
+.image-cover {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: var(--section-padding);
+  }
+
+  .container {
+    width: min(100% - 48px, var(--container-width));
+  }
+
+  .container--wide {
+    width: min(100% - 48px, var(--container-width-wide));
+  }
+}
+
+@media (max-width: 520px) {
+  .btn {
+    width: 100%;
+    min-height: 46px;
+    padding-inline: 18px;
+  }
+}

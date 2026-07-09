@@ -1,0 +1,257 @@
+/* ServicesManager.css */
+/* Gestión administrativa de servicios. */
+
+/* Contenedor */
+
+.servicesManager {
+  display: grid;
+  gap: 22px;
+
+  min-width: 0;
+}
+
+/* Cabecera */
+
+.servicesManager__top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-bottom: 2px;
+}
+
+/* Mensajes */
+
+.servicesManager__error,
+.servicesManager__empty {
+  padding: 16px 18px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-md);
+
+  font-weight: 800;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.servicesManager__error {
+  color: var(--color-error);
+
+  border-color: rgba(182, 71, 71, 0.18);
+  background: var(--color-error-soft);
+}
+
+.servicesManager__empty {
+  color: var(--color-text-soft);
+}
+
+/* Grid */
+
+.servicesManager__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 16px;
+
+  min-width: 0;
+}
+
+/* Card */
+
+.servicesManager__card {
+  display: grid;
+  gap: 18px;
+
+  min-width: 0;
+
+  padding: 20px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.servicesManager__card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(17, 19, 21, 0.16);
+
+  box-shadow: var(--shadow-card);
+}
+
+.servicesManager__card h3 {
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: 1.45rem;
+}
+
+.servicesManager__card p {
+  margin-top: 10px;
+
+  color: var(--color-text-soft);
+
+  line-height: 1.6;
+}
+
+/* Información */
+
+.servicesManager__meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  min-width: 0;
+
+  padding-top: 14px;
+
+  border-top: 1px solid rgba(17, 19, 21, 0.08);
+}
+
+.servicesManager__meta span {
+  color: var(--color-text-soft);
+  font-weight: 800;
+}
+
+.servicesManager__meta strong {
+  color: var(--color-gold-hover);
+}
+
+/* Estado */
+
+.servicesManager__status {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 12px;
+
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+  font-size: 0.82rem;
+  font-weight: 900;
+
+  background: var(--color-success);
+}
+
+.servicesManager__status--inactive {
+  color: var(--color-text-soft);
+
+  background: var(--color-surface-soft);
+}
+
+/* Acciones */
+
+.servicesManager__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.servicesManager__actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  flex: 1 1 130px;
+
+  min-width: 0;
+  min-height: 42px;
+
+  padding: 0 14px;
+
+  border-radius: var(--radius-full);
+
+  cursor: pointer;
+
+  color: var(--color-text-light);
+  font-weight: 800;
+
+  background: var(--color-surface-dark);
+
+  transition:
+    background var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.servicesManager__actions button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-soft);
+}
+
+/* Editar */
+
+.servicesManager__actions button:first-child:hover {
+  background: var(--color-gold);
+}
+
+/* Activar / Desactivar */
+
+.servicesManager__actions button:nth-child(2) {
+  background: var(--color-success);
+}
+
+.servicesManager__actions button:nth-child(2):hover {
+  background: #276942;
+}
+
+/* Eliminar */
+
+.servicesManager__delete {
+  color: var(--color-text-light) !important;
+
+  background: var(--color-error) !important;
+}
+
+.servicesManager__delete:hover {
+  background: #982f2f !important;
+}
+
+.servicesManager__actions button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+/* Responsive */
+
+@media (max-width: 680px) {
+  .servicesManager__top {
+    justify-content: stretch;
+  }
+
+  .servicesManager__top .btn {
+    width: 100%;
+  }
+
+  .servicesManager__actions {
+    flex-direction: column;
+  }
+
+  .servicesManager__actions button {
+    width: 100%;
+  }
+}

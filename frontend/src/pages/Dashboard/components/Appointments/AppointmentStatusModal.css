@@ -1,0 +1,523 @@
+/* AppointmentStatusModal.css */
+/* Modal para cambiar el estado de una reserva. */
+
+.appointmentStatusModal {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(17, 19, 21, 0.58);
+  backdrop-filter: blur(6px);
+
+  animation: appointmentStatusFade 180ms ease;
+}
+
+.appointmentStatusModal__panel {
+  position: relative;
+
+  width: min(100%, 860px);
+  max-height: calc(100vh - 48px);
+
+  display: grid;
+  gap: 18px;
+
+  overflow-y: auto;
+
+  padding: 34px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-xl);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-dark);
+
+  animation: appointmentStatusPop 220ms ease;
+}
+
+/* Resultado */
+
+.appointmentStatusModal__result {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 18px;
+
+  min-height: 420px;
+
+  text-align: center;
+}
+
+.appointmentStatusModal__resultIcon {
+  display: grid;
+  place-items: center;
+
+  width: 110px;
+  height: 110px;
+
+  border-radius: 50%;
+
+  font-size: 3rem;
+}
+
+.appointmentStatusModal__result--success
+  .appointmentStatusModal__resultIcon {
+  color: var(--color-success);
+
+  background: var(--color-success-soft);
+}
+
+.appointmentStatusModal__result--error
+  .appointmentStatusModal__resultIcon {
+  color: var(--color-error);
+
+  background: var(--color-error-soft);
+}
+
+.appointmentStatusModal__result h2 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 4vw, 2.7rem);
+}
+
+.appointmentStatusModal__result p {
+  max-width: 520px;
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.appointmentStatusModal__result small {
+  color: var(--color-text-soft);
+
+  font-weight: 700;
+}
+
+/* Cerrar */
+
+.appointmentStatusModal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  color: var(--color-text-soft);
+
+  background: rgba(17, 19, 21, 0.06);
+
+  transition:
+    background var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.appointmentStatusModal__close:hover {
+  color: var(--color-text-light);
+
+  background: var(--color-surface-dark);
+
+  transform: rotate(6deg);
+}
+
+/* Encabezado */
+
+.appointmentStatusModal__header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding-right: 48px;
+}
+
+.appointmentStatusModal__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 66px;
+  height: 66px;
+
+  border-radius: 50%;
+
+  color: var(--color-text-light);
+
+  font-size: 1.8rem;
+
+  background: var(--color-surface-dark);
+
+  box-shadow: 0 14px 28px rgba(17, 19, 21, 0.16);
+}
+
+.appointmentStatusModal__header div:last-child {
+  display: grid;
+  gap: 6px;
+}
+
+.appointmentStatusModal__header span {
+  color: var(--color-gold);
+
+  font-size: 0.78rem;
+  font-weight: 900;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.appointmentStatusModal__header h2 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+}
+
+/* Resumen */
+
+.appointmentStatusModal__summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.appointmentStatusModal__summary div {
+  display: grid;
+  gap: 5px;
+
+  padding: 14px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface-soft);
+}
+
+.appointmentStatusModal__summary span,
+.appointmentStatusModal__current > span,
+.appointmentStatusModal__textarea span {
+  color: var(--color-text-soft);
+
+  font-size: 0.76rem;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.appointmentStatusModal__summary strong {
+  color: var(--color-text);
+}
+
+.appointmentStatusModal__comment {
+  grid-column: 1 / -1;
+}
+
+.appointmentStatusModal__comment p {
+  margin: 0;
+
+  color: var(--color-text);
+
+  line-height: 1.6;
+}
+
+/* Estado */
+
+.appointmentStatusModal__current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding-top: 2px;
+}
+
+/* Opciones */
+
+.appointmentStatusModal__options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.appointmentStatusModal__option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 48px;
+
+  padding: 0 16px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-full);
+
+  color: var(--color-text);
+
+  font-weight: 900;
+
+  cursor: pointer;
+
+  background: var(--color-surface-soft);
+
+  transition:
+    transform var(--transition-base),
+    background var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.appointmentStatusModal__option:hover,
+.appointmentStatusModal__option--selected {
+  transform: translateY(-2px);
+
+  color: var(--color-text-light);
+
+  background: var(--color-gold);
+
+  box-shadow: var(--shadow-gold);
+}
+
+.appointmentStatusModal__option svg {
+  flex-shrink: 0;
+}
+
+/* Correo */
+
+.appointmentStatusModal__emailBox {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) 1fr;
+  gap: 18px;
+
+  padding: 18px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface-soft);
+}
+
+.appointmentStatusModal__notice {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.appointmentStatusModal__notice strong {
+  color: var(--color-text);
+
+  font-weight: 900;
+}
+
+.appointmentStatusModal__notice p {
+  margin: 0;
+
+  color: var(--color-text-soft);
+
+  line-height: 1.6;
+}
+
+.appointmentStatusModal__textarea {
+  display: grid;
+  gap: 8px;
+}
+
+.appointmentStatusModal__textarea textarea {
+  width: 100%;
+  min-height: 104px;
+
+  resize: vertical;
+
+  padding: 14px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text);
+
+  line-height: 1.6;
+
+  background: white;
+
+  outline: none;
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.appointmentStatusModal__textarea textarea::placeholder {
+  color: rgba(94, 85, 77, 0.62);
+}
+
+.appointmentStatusModal__textarea textarea:focus {
+  border-color: rgba(184, 109, 61, 0.78);
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.13),
+    var(--shadow-card);
+}
+
+.appointmentStatusModal__textarea small {
+  color: var(--color-text-soft);
+
+  line-height: 1.6;
+}
+
+/* Cerrada */
+
+.appointmentStatusModal__locked {
+  margin: 0;
+
+  padding: 16px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text-soft);
+
+  font-weight: 800;
+  line-height: 1.6;
+
+  background: var(--color-surface-soft);
+}
+
+/* Acciones */
+
+.appointmentStatusModal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.appointmentStatusModal__actions .btn {
+  min-width: 160px;
+}
+
+.appointmentStatusModal__dangerButton {
+  color: #fff;
+
+  background: var(--color-error);
+
+  box-shadow: 0 12px 24px rgba(182, 71, 71, 0.24);
+}
+
+.appointmentStatusModal__dangerButton:hover {
+  background: #982f2f;
+}
+
+/* Deshabilitado */
+
+.appointmentStatusModal button:disabled,
+.appointmentStatusModal textarea:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+}
+
+/* Animaciones */
+
+@keyframes appointmentStatusFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes appointmentStatusPop {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(12px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 780px) {
+  .appointmentStatusModal {
+    align-items: stretch;
+
+    padding: 12px;
+  }
+
+  .appointmentStatusModal__panel {
+    max-height: calc(100vh - 24px);
+
+    padding: 26px;
+  }
+
+  .appointmentStatusModal__result {
+    min-height: 360px;
+  }
+
+  .appointmentStatusModal__resultIcon {
+    width: 92px;
+    height: 92px;
+
+    font-size: 2.5rem;
+  }
+
+  .appointmentStatusModal__header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    padding-right: 42px;
+  }
+
+  .appointmentStatusModal__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentStatusModal__options,
+  .appointmentStatusModal__emailBox {
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentStatusModal__current {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .appointmentStatusModal__actions {
+    flex-direction: column;
+  }
+
+  .appointmentStatusModal__actions .btn {
+    width: 100%;
+  }
+}

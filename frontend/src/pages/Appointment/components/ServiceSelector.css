@@ -1,0 +1,241 @@
+/* ServiceSelector.css */
+/* Selector visual de servicios disponibles. */
+
+.serviceSelector {
+  display: grid;
+  gap: 22px;
+}
+
+.serviceSelector__header {
+  display: grid;
+  gap: 10px;
+}
+
+.serviceSelector__title {
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: clamp(1.75rem, 4vw, 2.45rem);
+  line-height: 1.08;
+}
+
+.serviceSelector__text {
+  max-width: 640px;
+
+  color: var(--color-text-soft);
+  line-height: 1.65;
+}
+
+.serviceSelector__grid {
+  display: grid;
+  gap: 16px;
+}
+
+.serviceSelector__card {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  gap: 18px;
+
+  width: 100%;
+  min-height: 170px;
+  padding: 22px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-lg);
+
+  text-align: left;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-card);
+
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+}
+
+.serviceSelector__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(184, 109, 61, 0.08);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity var(--transition-base);
+}
+
+.serviceSelector__card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(17, 19, 21, 0.18);
+
+  background: white;
+
+  box-shadow: var(--shadow-panel);
+}
+
+.serviceSelector__card:hover::before {
+  opacity: 1;
+}
+
+.serviceSelector__card--active {
+  border-color: rgba(184, 109, 61, 0.72);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.12),
+    var(--shadow-panel);
+}
+
+.serviceSelector__card--active::before {
+  opacity: 1;
+}
+
+.serviceSelector__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+
+  color: var(--color-text-light);
+  font-size: 1.4rem;
+
+  background: var(--color-surface-dark);
+
+  box-shadow: 0 12px 24px rgba(17, 19, 21, 0.16);
+}
+
+.serviceSelector__content {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  gap: 12px;
+
+  flex: 1;
+}
+
+.serviceSelector__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.serviceSelector__top h3 {
+  color: var(--color-text);
+  font-size: 1.08rem;
+  line-height: 1.25;
+}
+
+.serviceSelector__selected {
+  flex-shrink: 0;
+
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+  font-size: 0.72rem;
+  font-weight: 950;
+
+  background: var(--color-gold);
+}
+
+.serviceSelector__content p {
+  color: var(--color-text-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.serviceSelector__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-top: auto;
+  padding-top: 14px;
+
+  border-top: 1px solid rgba(17, 19, 21, 0.08);
+}
+
+.serviceSelector__footer span,
+.serviceSelector__footer strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.serviceSelector__footer span {
+  color: var(--color-text-soft);
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.serviceSelector__footer span svg {
+  color: var(--color-gold);
+}
+
+.serviceSelector__footer strong {
+  color: var(--color-text);
+  font-size: 1.12rem;
+}
+
+.serviceSelector__footer strong svg {
+  color: var(--color-success);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 760px) {
+  .serviceSelector__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .serviceSelector__card {
+    gap: 14px;
+
+    min-height: 154px;
+    padding: 18px;
+
+    border-radius: var(--radius-lg);
+  }
+
+  .serviceSelector__icon {
+    width: 56px;
+    height: 56px;
+
+    border-radius: var(--radius-md);
+    font-size: 1.2rem;
+  }
+
+  .serviceSelector__top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .serviceSelector__top h3 {
+    font-size: 1rem;
+  }
+
+  .serviceSelector__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

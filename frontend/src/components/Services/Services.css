@@ -1,0 +1,74 @@
+/* Services.css */
+/* Sección de servicios principales. */
+
+.services {
+  position: relative;
+  overflow: hidden;
+
+  padding: var(--section-padding) 0;
+
+  background: var(--color-bg-soft);
+}
+
+.services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: var(--bg-grid);
+  background-size: 64px 64px;
+  opacity: 0.18;
+
+  pointer-events: none;
+}
+
+.services::after {
+  content: "";
+  position: absolute;
+  left: -180px;
+  top: 110px;
+
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+
+  background: rgba(184, 109, 61, 0.08);
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+.services .container {
+  position: relative;
+  z-index: 2;
+}
+
+.services__grid {
+  display: grid;
+  gap: 26px;
+
+  margin-top: 52px;
+}
+
+@media (min-width: 720px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .services__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .services {
+    padding: var(--section-padding-mobile) 0;
+  }
+
+  .services__grid {
+    margin-top: 38px;
+    gap: 20px;
+  }
+}

@@ -1,0 +1,331 @@
+/* AdminProfile.css */
+/* Gestión del perfil administrador. */
+
+.adminProfile {
+  display: grid;
+  gap: 24px;
+}
+
+.adminProfile__loading {
+  margin: 0;
+
+  color: var(--color-text-soft);
+  font-weight: 800;
+}
+
+/* Cards */
+
+.adminProfile__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.adminProfile__card {
+  display: flex;
+  gap: 16px;
+
+  padding: 22px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.adminProfile__card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(17, 19, 21, 0.16);
+
+  box-shadow: var(--shadow-card);
+}
+
+.adminProfile__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  color: var(--color-text-light);
+
+  background: var(--color-surface-dark);
+
+  box-shadow: 0 12px 24px rgba(17, 19, 21, 0.16);
+}
+
+.adminProfile__card span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--color-text-soft);
+
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.adminProfile__card h3 {
+  margin: 0;
+
+  color: var(--color-text);
+  word-break: break-word;
+
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+}
+
+.adminProfile__card p {
+  margin: 8px 0 0;
+
+  color: var(--color-text-soft);
+  line-height: 1.55;
+}
+
+/* Formularios */
+
+.adminProfile__form {
+  padding: 24px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.adminProfile__formHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+
+  margin-bottom: 22px;
+}
+
+.adminProfile__formHeader h3 {
+  margin: 6px 0 0;
+
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+}
+
+.adminProfile__formHeader p {
+  margin: 8px 0 0;
+
+  color: var(--color-text-soft);
+  line-height: 1.55;
+}
+
+.adminProfile__formHeader > svg {
+  flex-shrink: 0;
+
+  margin-top: 4px;
+
+  color: var(--color-gold);
+  font-size: 1.55rem;
+}
+
+/* Campos */
+
+.adminProfile__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.adminProfile__fields label {
+  display: grid;
+  gap: 8px;
+
+  color: var(--color-text-soft);
+
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.adminProfile__fields input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text);
+
+  font: inherit;
+  font-weight: 700;
+
+  text-transform: none;
+  letter-spacing: 0;
+
+  background: white;
+
+  outline: none;
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.adminProfile__fields input:focus {
+  border-color: rgba(184, 109, 61, 0.78);
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.13),
+    var(--shadow-card);
+
+  transform: translateY(-1px);
+}
+
+/* Password */
+
+.adminProfile__passwordField {
+  position: relative;
+}
+
+.adminProfile__passwordField input {
+  padding-right: 52px;
+}
+
+.adminProfile__passwordField button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 50%;
+
+  color: var(--color-text-soft);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+
+  transition:
+    color var(--transition-base),
+    background var(--transition-base);
+}
+
+.adminProfile__passwordField button:hover {
+  color: var(--color-gold);
+
+  background: rgba(184, 109, 61, 0.1);
+}
+
+.adminProfile__passwordField button:focus-visible {
+  outline: 2px solid var(--color-gold);
+}
+
+/* Indicaciones */
+
+.adminProfile__hint {
+  margin-top: 14px;
+
+  color: var(--color-text-soft);
+
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Acciones */
+
+.adminProfile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 22px;
+}
+
+.adminProfile__actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Mensajes */
+
+.adminProfile__message,
+.adminProfile__error {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+
+  border-radius: var(--radius-md);
+
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.adminProfile__message {
+  color: var(--color-success);
+
+  border: 1px solid rgba(52, 122, 81, 0.18);
+  background: var(--color-success-soft);
+}
+
+.adminProfile__error {
+  color: var(--color-error);
+
+  border: 1px solid rgba(182, 71, 71, 0.18);
+  background: var(--color-error-soft);
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .adminProfile__grid,
+  .adminProfile__fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .adminProfile__card,
+  .adminProfile__form {
+    padding: 20px;
+  }
+
+  .adminProfile__formHeader {
+    flex-direction: column;
+  }
+
+  .adminProfile__actions {
+    flex-direction: column;
+  }
+
+  .adminProfile__actions .btn {
+    width: 100%;
+  }
+}

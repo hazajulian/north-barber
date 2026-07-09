@@ -1,0 +1,10 @@
+// utils/response.js
+// Centraliza las respuestas exitosas de la API.
+
+export function sendSuccess(res, message, data = null, statusCode = 200) {
+  return res.status(statusCode).json({
+    success: true,
+    message,
+    data,
+  });
+}

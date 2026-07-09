@@ -1,0 +1,41 @@
+{
+  "name": "north-barber-api",
+  "version": "1.0.0",
+  "description": "REST API for North Barber. Includes authentication, appointment booking, business hours, notifications, email service and administration dashboard.",
+  "main": "src/server.js",
+  "type": "module",
+  "author": "Julian Haza",
+  "license": "MIT",
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql",
+    "rest-api",
+    "barbershop",
+    "appointments",
+    "authentication"
+  ],
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "hash:password": "node src/utils/hashPassword.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.11.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.22.5",
+    "nodemailer": "^9.0.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,419 @@
+/* NotificationsPanel.css */
+/* Panel de notificaciones internas. */
+
+.notificationsPanel {
+  position: relative;
+
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 12px;
+
+  height: 100%;
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+/* Encabezado */
+
+.notificationsPanel__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+  padding: 10px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.notificationsPanel__headerText {
+  display: grid;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.notificationsPanel__header h3 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  line-height: 1.05;
+}
+
+.notificationsPanel__header span {
+  color: var(--color-text-soft);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.notificationsPanel .notificationsPanel__readAllButton.btn {
+  min-height: 28px;
+  height: 28px;
+  padding: 0 10px;
+
+  gap: 0;
+
+  border-radius: var(--radius-full);
+
+  font-size: 0.66rem;
+  font-weight: 900;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.notificationsPanel .notificationsPanel__readAllButton.btn:hover {
+  transform: none;
+}
+
+.notificationsPanel .notificationsPanel__readAllButton.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+/* Estados */
+
+.notificationsPanel__error,
+.notificationsPanel__loading,
+.notificationsPanel__empty {
+  padding: 16px 18px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text-soft);
+  font-weight: 800;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.notificationsPanel__error {
+  color: var(--color-error);
+
+  border-color: rgba(182, 71, 71, 0.18);
+  background: var(--color-error-soft);
+}
+
+/* Cuerpo */
+
+.notificationsPanel__body {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 10px;
+
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Lista */
+
+.notificationsPanel__list {
+  display: grid;
+  gap: 12px;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 6px;
+  padding-bottom: 10px;
+
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.notificationsPanel__list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notificationsPanel__list::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(184, 109, 61, 0.45);
+}
+
+.notificationsPanel__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Item */
+
+.notificationsPanel__item {
+  position: relative;
+
+  display: grid;
+  gap: 12px;
+
+  min-width: 0;
+  padding: 13px 38px 13px 13px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.notificationsPanel__item--unread {
+  border-color: rgba(184, 109, 61, 0.36);
+
+  background: var(--color-surface);
+}
+
+.notificationsPanel__item--unread::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: var(--color-gold);
+}
+
+/* Contenido */
+
+.notificationsPanel__content {
+  display: grid;
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.notificationsPanel__titleRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.notificationsPanel__titleRow strong {
+  color: var(--color-text);
+
+  font-size: 0.78rem;
+  font-weight: 900;
+
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.notificationsPanel__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 22px;
+  padding: 0 8px;
+
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+
+  font-size: 0.68rem;
+  font-weight: 900;
+
+  background: var(--color-gold);
+}
+
+.notificationsPanel__content p {
+  margin: 0;
+
+  color: var(--color-text-soft);
+
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.notificationsPanel__content small {
+  color: rgba(94, 85, 77, 0.82);
+
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+/* Botones */
+
+.notificationsPanel__hideButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+  padding: 0;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-soft);
+
+  font-size: 0.68rem;
+
+  background: var(--color-surface-soft);
+
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.notificationsPanel__hideButton:hover {
+  color: var(--color-text-light);
+  border-color: var(--color-error);
+  background: var(--color-error);
+}
+
+.notificationsPanel__readButton {
+  justify-self: start;
+
+  min-height: 34px;
+  padding: 0 12px;
+
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+
+  font-size: 0.76rem;
+  font-weight: 900;
+
+  white-space: nowrap;
+
+  background: var(--color-surface-dark);
+
+  transition:
+    transform var(--transition-base),
+    background var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.notificationsPanel__readButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  background: var(--color-gold);
+
+  box-shadow: var(--shadow-gold);
+}
+
+.notificationsPanel__readButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Paginación */
+
+.notificationsPanel__pagination {
+  display: grid;
+  grid-template-columns: minmax(82px, 1fr) auto minmax(82px, 1fr);
+  align-items: center;
+  gap: 10px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid rgba(17, 19, 21, 0.08);
+}
+
+.notificationsPanel__pagination .btn {
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  padding-inline: 8px;
+
+  border-radius: var(--radius-full);
+
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.notificationsPanel__pagination span {
+  color: var(--color-text-soft);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Variante lateral */
+
+.dashboard__aside .notificationsPanel,
+.notificationsDrawer__content .notificationsPanel {
+  height: 100%;
+  min-height: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  .notificationsPanel__header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+
+    padding: 10px;
+  }
+
+  .notificationsPanel__header h3 {
+    font-size: 0.9rem;
+  }
+
+  .notificationsPanel__header span {
+    font-size: 0.66rem;
+  }
+
+  .notificationsPanel .notificationsPanel__readAllButton.btn {
+    min-height: 28px;
+    height: 28px;
+    padding-inline: 10px;
+
+    font-size: 0.64rem;
+  }
+
+  .notificationsPanel__item {
+    padding: 13px 36px 13px 13px;
+  }
+
+  .notificationsPanel__hideButton {
+    width: 23px;
+    height: 23px;
+
+    font-size: 0.64rem;
+  }
+
+  .notificationsPanel__readButton {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .notificationsPanel__pagination {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .notificationsPanel__pagination span {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+}

@@ -1,0 +1,143 @@
+/* variables.css */
+/* Paleta principal, tipografías, espaciados y sombras del proyecto. */
+
+:root {
+  /* colores base */
+  --color-bg: #f3efe9;
+  --color-bg-soft: #ece6dd;
+  --color-bg-warm: #e2d8ca;
+
+  --color-surface: #fffdf9;
+  --color-surface-soft: #f8f3ec;
+  --color-surface-muted: #eadfD1;
+
+  --color-surface-dark: #111315;
+  --color-surface-dark-soft: #1c2022;
+
+  --color-text: #151515;
+  --color-text-soft: #5e554d;
+  --color-text-muted: #8c8176;
+
+  --color-text-light: #faf7f2;
+  --color-text-light-soft: #d4c9bd;
+
+  /* marca */
+  --color-black: #0e0f10;
+
+  --color-brown: #6b4a34;
+  --color-brown-soft: #8d6549;
+  --color-wood: #9a7250;
+
+  --color-gold: #b86d3d;
+  --color-gold-hover: #9f5930;
+  --color-gold-soft: #d49a73;
+  --color-gold-pale: #f1ddcd;
+
+  --color-accent: #4f6870;
+  --color-accent-hover: #3d535a;
+  --color-accent-soft: #dce7e8;
+
+  /* estados */
+  --color-success: #347a51;
+  --color-success-soft: #dceee3;
+
+  --color-error: #b64747;
+  --color-error-soft: #f4dddd;
+
+  --color-warning: #b87932;
+  --color-warning-soft: #f3e3ce;
+
+  --color-info: #476f9d;
+  --color-info-soft: #dde8f4;
+
+  /* fondos reutilizables */
+  --bg-page:
+    linear-gradient(
+      180deg,
+      #f3efe9 0%,
+      #ece6dd 100%
+    );
+
+  --bg-section-light:
+    linear-gradient(
+      180deg,
+      #fffdf9 0%,
+      #f8f3ec 100%
+    );
+
+  --bg-section-dark:
+    linear-gradient(
+      180deg,
+      #111315 0%,
+      #1c2022 100%
+    );
+
+  --bg-grid:
+    linear-gradient(
+      rgba(0, 0, 0, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.035) 1px,
+      transparent 1px
+    );
+
+  /* bordes */
+  --border-soft: 1px solid rgba(17, 19, 21, 0.10);
+  --border-warm: 1px solid rgba(184, 109, 61, 0.26);
+  --border-dark: 1px solid rgba(255, 255, 255, 0.10);
+
+  /* sombras */
+  --shadow-soft:
+    0 8px 20px rgba(17, 19, 21, 0.06);
+
+  --shadow-card:
+    0 14px 30px rgba(17, 19, 21, 0.09);
+
+  --shadow-panel:
+    0 24px 48px rgba(17, 19, 21, 0.12);
+
+  --shadow-gold:
+    0 10px 24px rgba(184, 109, 61, 0.20);
+
+  --shadow-dark:
+    0 28px 56px rgba(0, 0, 0, 0.34);
+
+  /* radios */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-xl: 34px;
+  --radius-2xl: 42px;
+  --radius-full: 999px;
+
+  /* layout */
+  --container-width: 1180px;
+  --container-width-wide: 1320px;
+
+  --section-padding: 84px;
+  --section-padding-mobile: 60px;
+
+  /* fuentes */
+  --font-title:
+    "Georgia",
+    "Times New Roman",
+    serif;
+
+  --font-body:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  /* navbar */
+  --navbar-height: 78px;
+
+  /* transiciones */
+  --transition-fast: 180ms ease;
+  --transition-base: 260ms ease;
+  --transition-slow: 420ms ease;
+}

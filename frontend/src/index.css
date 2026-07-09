@@ -1,0 +1,6 @@
+/* index.css */
+/* Conector principal de estilos globales. */
+
+@import "./styles/variables.css";
+@import "./styles/reset.css";
+@import "./styles/globals.css";

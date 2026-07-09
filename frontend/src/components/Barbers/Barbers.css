@@ -1,0 +1,68 @@
+/* Barbers.css */
+/* Sección del equipo de barberos. */
+
+.barbers {
+  position: relative;
+  overflow: hidden;
+
+  padding: var(--section-padding) 0;
+
+  background: var(--color-bg);
+}
+
+.barbers::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: var(--bg-grid);
+  background-size: 64px 64px;
+  opacity: 0.16;
+
+  pointer-events: none;
+}
+
+.barbers::after {
+  content: "";
+  position: absolute;
+  right: -180px;
+  top: 160px;
+
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+
+  background: rgba(79, 104, 112, 0.1);
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+.barbers .container {
+  position: relative;
+  z-index: 2;
+}
+
+.barbers__grid {
+  display: grid;
+  gap: 26px;
+
+  margin-top: 52px;
+}
+
+@media (min-width: 760px) {
+  .barbers__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .barbers {
+    padding: var(--section-padding-mobile) 0;
+  }
+
+  .barbers__grid {
+    margin-top: 38px;
+    gap: 22px;
+  }
+}

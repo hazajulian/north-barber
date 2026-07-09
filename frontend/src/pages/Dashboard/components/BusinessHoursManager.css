@@ -1,0 +1,359 @@
+/* BusinessHoursManager.css */
+/* Gestión administrativa de horarios del negocio. */
+
+.businessHoursManager {
+  display: grid;
+  gap: 20px;
+
+  min-width: 0;
+}
+
+/* Mensajes */
+
+.businessHoursManager__error,
+.businessHoursManager__empty {
+  padding: 18px 20px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-md);
+
+  font-weight: 800;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.businessHoursManager__error {
+  color: var(--color-error);
+
+  border-color: rgba(182, 71, 71, 0.18);
+  background: var(--color-error-soft);
+}
+
+.businessHoursManager__empty {
+  color: var(--color-text-soft);
+
+  text-align: center;
+}
+
+/* Lista */
+
+.businessHoursManager__list {
+  display: grid;
+  gap: 16px;
+
+  min-width: 0;
+}
+
+/* Card */
+
+.businessHoursManager__row {
+  display: grid;
+  grid-template-columns:
+    minmax(130px, 160px)
+    minmax(0, 1fr)
+    minmax(240px, 310px)
+    minmax(120px, 138px);
+  align-items: center;
+  gap: 18px;
+
+  min-width: 0;
+
+  padding: 20px 22px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.businessHoursManager__row:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(17, 19, 21, 0.16);
+
+  box-shadow: var(--shadow-card);
+}
+
+.businessHoursManager__row--closed {
+  opacity: 0.76;
+}
+
+/* Día */
+
+.businessHoursManager__day {
+  display: grid;
+  gap: 6px;
+
+  min-width: 0;
+}
+
+.businessHoursManager__day strong {
+  overflow: hidden;
+
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+  line-height: 1;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.businessHoursManager__day span {
+  color: var(--color-text-soft);
+
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+/* Horarios */
+
+.businessHoursManager__schedule {
+  display: grid;
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.businessHoursManager__timeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  min-width: 0;
+}
+
+/* Inputs */
+
+.businessHoursManager__field {
+  display: grid;
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.businessHoursManager__field span {
+  color: var(--color-text-soft);
+
+  font-size: 0.73rem;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.businessHoursManager__field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+
+  padding: 0 12px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text);
+
+  cursor: pointer;
+
+  background: white;
+
+  outline: none;
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base),
+    transform var(--transition-base);
+}
+
+.businessHoursManager__field input:hover:not(:disabled) {
+  border-color: rgba(17, 19, 21, 0.2);
+}
+
+.businessHoursManager__field input:focus {
+  border-color: rgba(184, 109, 61, 0.78);
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.13),
+    var(--shadow-card);
+
+  transform: translateY(-1px);
+}
+
+.businessHoursManager__field input:disabled {
+  cursor: not-allowed;
+
+  color: rgba(17, 19, 21, 0.45);
+
+  background: var(--color-surface-soft);
+
+  box-shadow: none;
+}
+
+/* Descanso */
+
+.businessHoursManager__break {
+  display: grid;
+  gap: 12px;
+
+  min-width: 0;
+
+  padding: 14px;
+
+  border: 1px solid rgba(17, 19, 21, 0.08);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface-soft);
+}
+
+.businessHoursManager__breakFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+
+  min-width: 0;
+}
+
+/* Checkboxes */
+
+.businessHoursManager__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  width: fit-content;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.businessHoursManager__toggle input {
+  flex-shrink: 0;
+
+  width: 17px;
+  height: 17px;
+
+  cursor: pointer;
+
+  accent-color: var(--color-gold);
+}
+
+.businessHoursManager__toggle input:disabled {
+  cursor: not-allowed;
+}
+
+.businessHoursManager__toggle span {
+  color: var(--color-text);
+
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+/* Acciones */
+
+.businessHoursManager__actions {
+  display: grid;
+  justify-items: stretch;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.businessHoursManager__saved {
+  color: var(--color-success);
+
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.businessHoursManager__saveButton {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+}
+
+.businessHoursManager__saveButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.7;
+
+  transform: none;
+}
+
+/* Desktop chico */
+
+@media (max-width: 1320px) {
+  .businessHoursManager__row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .businessHoursManager__actions {
+    justify-items: end;
+  }
+
+  .businessHoursManager__saveButton {
+    width: auto;
+    min-width: 160px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 680px) {
+  .businessHoursManager {
+    gap: 18px;
+  }
+
+  .businessHoursManager__row {
+    padding: 18px;
+
+    border-radius: var(--radius-md);
+  }
+
+  .businessHoursManager__day strong {
+    font-size: 1.55rem;
+  }
+
+  .businessHoursManager__timeGrid,
+  .businessHoursManager__breakFields {
+    grid-template-columns: 1fr;
+  }
+
+  .businessHoursManager__actions {
+    justify-items: stretch;
+  }
+
+  .businessHoursManager__saveButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .businessHoursManager__row {
+    padding: 16px;
+  }
+
+  .businessHoursManager__break {
+    padding: 12px;
+  }
+
+  .businessHoursManager__field input {
+    min-height: 42px;
+  }
+}

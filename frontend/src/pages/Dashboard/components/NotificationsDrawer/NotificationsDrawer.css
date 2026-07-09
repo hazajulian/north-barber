@@ -1,0 +1,190 @@
+/* NotificationsDrawer.css */
+/* Drawer fijo para notificaciones en pantallas medianas y chicas. */
+
+.notificationsDrawer__floatingButton {
+  position: fixed;
+  z-index: 60;
+  right: 24px;
+  bottom: 24px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+
+  background: var(--color-surface-dark);
+
+  box-shadow:
+    0 18px 40px rgba(17, 19, 21, 0.2),
+    0 0 0 8px rgba(17, 19, 21, 0.08);
+
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+}
+
+.notificationsDrawer__floatingButton:hover {
+  transform: translateY(-3px) scale(1.02);
+
+  background: var(--color-gold);
+
+  box-shadow:
+    0 22px 48px rgba(17, 19, 21, 0.24),
+    0 0 0 10px rgba(184, 109, 61, 0.16);
+}
+
+.notificationsDrawer__floatingButton svg {
+  font-size: 1.15rem;
+}
+
+.notificationsDrawer__floatingButton span {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+
+  border: 2px solid var(--color-surface);
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+
+  font-size: 0.72rem;
+  font-weight: 900;
+
+  background: var(--color-error);
+}
+
+/* Contenedor */
+
+.notificationsDrawer {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+
+  display: none;
+
+  pointer-events: auto;
+}
+
+/* Fondo */
+
+.notificationsDrawer__overlay {
+  position: absolute;
+  inset: 0;
+
+  border: 0;
+  padding: 0;
+
+  background: rgba(17, 19, 21, 0.46);
+  backdrop-filter: blur(3px);
+}
+
+/* Panel */
+
+.notificationsDrawer__panel {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  right: 18px;
+  bottom: 18px;
+
+  width: min(430px, calc(100vw - 36px));
+
+  overflow: hidden;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: 30px;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-panel);
+}
+
+.notificationsDrawer__close {
+  position: absolute;
+  z-index: 3;
+  top: 16px;
+  right: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+
+  background: var(--color-surface-dark);
+
+  transition:
+    transform var(--transition-base),
+    background var(--transition-base);
+}
+
+.notificationsDrawer__close:hover {
+  transform: translateY(-2px);
+
+  background: var(--color-gold);
+}
+
+.notificationsDrawer__content {
+  height: 100%;
+  min-height: 0;
+
+  overflow: hidden;
+
+  padding: 20px;
+}
+
+/* Activación */
+
+@media (max-width: 1659px) {
+  .notificationsDrawer {
+    display: block;
+  }
+
+  .notificationsDrawer__floatingButton {
+    display: inline-flex;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .notificationsDrawer__floatingButton {
+    right: 18px;
+    bottom: 18px;
+
+    width: 54px;
+    height: 54px;
+  }
+
+  .notificationsDrawer__panel {
+    inset: 8px;
+
+    width: auto;
+
+    border-radius: 22px;
+  }
+
+  .notificationsDrawer__content {
+    padding: 12px;
+  }
+}

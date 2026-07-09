@@ -1,0 +1,198 @@
+/* AppointmentStats.css */
+/* Tarjetas resumen con estadísticas rápidas de reservas. */
+
+.appointmentStats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Card */
+
+.appointmentStats__card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  overflow: hidden;
+
+  min-width: 0;
+
+  padding: 20px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.appointmentStats__card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: var(--shadow-card);
+}
+
+/* Línea superior */
+
+.appointmentStats__card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0 auto auto 0;
+
+  width: 100%;
+  height: 4px;
+}
+
+/* Colores */
+
+.appointmentStats__card--gold::before {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold),
+    var(--color-gold-hover)
+  );
+}
+
+.appointmentStats__card--blue::before {
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #60a5fa
+  );
+}
+
+.appointmentStats__card--green::before {
+  background: linear-gradient(
+    90deg,
+    #22c55e,
+    #4ade80
+  );
+}
+
+.appointmentStats__card--orange::before {
+  background: linear-gradient(
+    90deg,
+    #f59e0b,
+    #fbbf24
+  );
+}
+
+/* Icono */
+
+.appointmentStats__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 58px;
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  font-size: 1.25rem;
+}
+
+.appointmentStats__card--gold .appointmentStats__icon {
+  color: var(--color-gold);
+  background: rgba(184, 109, 61, 0.12);
+}
+
+.appointmentStats__card--blue .appointmentStats__icon {
+  color: #2563eb;
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.appointmentStats__card--green .appointmentStats__icon {
+  color: #16a34a;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.appointmentStats__card--orange .appointmentStats__icon {
+  color: #d97706;
+  background: rgba(245, 158, 11, 0.12);
+}
+
+/* Texto */
+
+.appointmentStats__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+  flex: 1;
+}
+
+.appointmentStats__content span {
+  color: var(--color-text-soft);
+
+  font-size: 0.76rem;
+  font-weight: 900;
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.appointmentStats__content strong {
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: clamp(1.2rem, 1.2vw, 1.55rem);
+  font-weight: 700;
+
+  line-height: 1.05;
+
+  overflow-wrap: anywhere;
+}
+
+/* Desktop intermedio */
+
+@media (max-width: 1659px) {
+  .appointmentStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .appointmentStats__card {
+    padding: 18px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .appointmentStats {
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentStats__card {
+    padding: 18px;
+  }
+
+  .appointmentStats__icon {
+    width: 54px;
+    height: 54px;
+
+    flex-basis: 54px;
+
+    font-size: 1.15rem;
+  }
+
+  .appointmentStats__content strong {
+    font-size: 1.45rem;
+  }
+}

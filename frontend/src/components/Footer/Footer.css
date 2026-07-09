@@ -1,0 +1,173 @@
+/* Footer.css */
+/* Footer principal del sitio. */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+
+  padding: 56px 0 30px;
+
+  color: var(--color-text-light);
+  background: var(--bg-section-dark);
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: var(--bg-grid);
+  background-size: 64px 64px;
+  opacity: 0.08;
+
+  pointer-events: none;
+}
+
+.footer__container {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  gap: 34px;
+}
+
+.footer__main {
+  max-width: 430px;
+}
+
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.footer__brand img {
+  width: 46px;
+  height: 46px;
+  padding: 7px;
+
+  border-radius: var(--radius-sm);
+
+  background: var(--color-text-light);
+}
+
+.footer__main p {
+  margin-top: 16px;
+
+  color: var(--color-text-light-soft);
+  line-height: 1.75;
+}
+
+.footer__nav,
+.footer__contact {
+  display: grid;
+  gap: 12px;
+}
+
+.footer__nav a {
+  width: fit-content;
+
+  color: var(--color-text-light-soft);
+  font-weight: 800;
+
+  transition: color var(--transition-fast);
+}
+
+.footer__nav a:hover {
+  color: var(--color-gold-soft);
+}
+
+.footer__contact span {
+  color: var(--color-text-light-soft);
+  line-height: 1.7;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  padding-top: 28px;
+
+  border-top: var(--border-dark);
+}
+
+.footer__credits {
+  display: grid;
+  gap: 8px;
+}
+
+.footer__credits p {
+  margin: 0;
+
+  color: rgba(250, 247, 242, 0.62);
+  line-height: 1.7;
+}
+
+.footer__creator {
+  font-weight: 700;
+}
+
+.footer__creator a {
+  color: var(--color-gold-soft);
+  font-weight: 900;
+
+  transition: color var(--transition-fast);
+}
+
+.footer__creator a:hover {
+  color: var(--color-text-light);
+}
+
+.footer__booking {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  width: fit-content;
+  padding: 0 22px;
+
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+  font-weight: 950;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-gold),
+      var(--color-gold-hover)
+    );
+
+  box-shadow: var(--shadow-gold);
+
+  transition:
+    transform var(--transition-base),
+    filter var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.footer__booking:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+@media (min-width: 760px) {
+  .footer__container {
+    grid-template-columns: 1.2fr 0.6fr 0.8fr;
+  }
+
+  .footer__bottom {
+    grid-column: 1 / -1;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

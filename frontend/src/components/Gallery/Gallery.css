@@ -1,0 +1,50 @@
+/* Gallery.css */
+/* Sección visual de galería. */
+
+.gallery {
+  position: relative;
+  overflow: hidden;
+
+  padding: var(--section-padding) 0;
+
+  background: var(--color-bg-soft);
+}
+
+.gallery::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: var(--bg-grid);
+  background-size: 64px 64px;
+  opacity: 0.16;
+
+  pointer-events: none;
+}
+
+.gallery::after {
+  content: "";
+  position: absolute;
+  left: -180px;
+  bottom: 120px;
+
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+
+  background: rgba(184, 109, 61, 0.08);
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+.gallery .container {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 760px) {
+  .gallery {
+    padding: var(--section-padding-mobile) 0;
+  }
+}

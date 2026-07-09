@@ -1,0 +1,247 @@
+/* DateSelector.css */
+/* Selector visual de fecha para la reserva. */
+
+.dateSelector {
+  display: grid;
+  gap: 22px;
+}
+
+.dateSelector__header {
+  display: grid;
+  gap: 10px;
+}
+
+.dateSelector__title {
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: clamp(1.75rem, 4vw, 2.45rem);
+  line-height: 1.08;
+}
+
+.dateSelector__text {
+  max-width: 640px;
+
+  color: var(--color-text-soft);
+  line-height: 1.65;
+}
+
+.dateSelector__scroller {
+  display: flex;
+  gap: 10px;
+
+  overflow-x: auto;
+  padding: 4px 2px 12px;
+
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.dateSelector__scroller::-webkit-scrollbar {
+  height: 7px;
+}
+
+.dateSelector__scroller::-webkit-scrollbar-track {
+  border-radius: var(--radius-full);
+  background: rgba(17, 19, 21, 0.08);
+}
+
+.dateSelector__scroller::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-full);
+  background: rgba(184, 109, 61, 0.45);
+}
+
+.dateSelector__card {
+  position: relative;
+  overflow: hidden;
+
+  flex: 0 0 82px;
+
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+
+  min-height: 92px;
+  padding: 12px 8px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text);
+  text-align: center;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+
+  scroll-snap-align: start;
+
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+}
+
+.dateSelector__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(184, 109, 61, 0.08);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity var(--transition-base);
+}
+
+.dateSelector__card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(17, 19, 21, 0.2);
+
+  background: white;
+
+  box-shadow: var(--shadow-card);
+}
+
+.dateSelector__card:hover::before {
+  opacity: 1;
+}
+
+.dateSelector__card--active {
+  border-color: rgba(184, 109, 61, 0.72);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.12),
+    var(--shadow-card);
+}
+
+.dateSelector__card--active::before {
+  opacity: 1;
+}
+
+.dateSelector__label,
+.dateSelector__month,
+.dateSelector__number {
+  position: relative;
+  z-index: 1;
+}
+
+.dateSelector__label {
+  color: var(--color-accent);
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dateSelector__number {
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.dateSelector__month {
+  color: var(--color-text-soft);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.dateSelector__resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  width: fit-content;
+  padding: 10px 14px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-soft);
+  font-size: 0.88rem;
+  font-weight: 800;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+.dateSelector__resume strong {
+  color: var(--color-text);
+}
+
+.dateSelector__empty {
+  padding: 16px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text-soft);
+  font-weight: 800;
+  line-height: 1.6;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+@media (min-width: 760px) {
+  .dateSelector__scroller {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .dateSelector__card {
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .dateSelector {
+    gap: 18px;
+  }
+
+  .dateSelector__scroller {
+    margin-inline: -8px;
+    padding-inline: 8px;
+  }
+
+  .dateSelector__card {
+    flex-basis: 72px;
+    min-height: 82px;
+    padding: 10px 7px;
+
+    border-radius: var(--radius-md);
+  }
+
+  .dateSelector__number {
+    font-size: 1.72rem;
+  }
+
+  .dateSelector__label {
+    font-size: 0.62rem;
+  }
+
+  .dateSelector__month {
+    font-size: 0.7rem;
+  }
+
+  .dateSelector__resume {
+    width: 100%;
+    justify-content: center;
+
+    border-radius: var(--radius-md);
+    text-align: center;
+  }
+}

@@ -1,0 +1,200 @@
+/* AppointmentsManager.css */
+/* Gestión administrativa de reservas. */
+
+.appointmentsManager {
+  display: grid;
+  gap: 22px;
+
+  min-width: 0;
+}
+
+/* Error */
+
+.appointmentsManager__error {
+  margin: 0;
+  padding: 16px 18px;
+
+  border: 1px solid rgba(182, 71, 71, 0.18);
+  border-radius: var(--radius-md);
+
+  color: var(--color-error);
+  font-weight: 800;
+
+  background: var(--color-error-soft);
+}
+
+/* Tabla */
+
+.appointmentsManager__tableWrapper {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.appointmentsManager__table {
+  width: 100%;
+  min-width: 920px;
+
+  border-collapse: collapse;
+}
+
+.appointmentsManager__table th,
+.appointmentsManager__table td {
+  padding: 16px;
+
+  border-bottom: 1px solid rgba(17, 19, 21, 0.08);
+
+  text-align: left;
+  vertical-align: middle;
+}
+
+.appointmentsManager__table th {
+  color: var(--color-text-soft);
+
+  font-size: 0.78rem;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  background: var(--color-surface-soft);
+}
+
+.appointmentsManager__table td {
+  color: var(--color-text);
+
+  font-size: 0.92rem;
+}
+
+.appointmentsManager__table tbody tr {
+  transition: background var(--transition-base);
+}
+
+.appointmentsManager__table tbody tr:hover {
+  background: rgba(184, 109, 61, 0.06);
+}
+
+.appointmentsManager__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Cliente */
+
+.appointmentsManager__table td strong {
+  display: block;
+
+  color: var(--color-text);
+
+  font-weight: 900;
+}
+
+.appointmentsManager__table td span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--color-text-soft);
+  font-size: 0.86rem;
+}
+
+/* Botón */
+
+.appointmentsManager__statusButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding: 0 14px;
+
+  border-radius: var(--radius-full);
+
+  color: var(--color-text-light);
+
+  font-size: 0.86rem;
+  font-weight: 900;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  background: var(--color-surface-dark);
+
+  transition:
+    transform var(--transition-base),
+    background var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.appointmentsManager__statusButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  background: var(--color-gold);
+
+  box-shadow: var(--shadow-gold);
+}
+
+.appointmentsManager__statusButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+
+  transform: none;
+  box-shadow: none;
+}
+
+/* Vacío */
+
+.appointmentsManager__empty {
+  padding: 34px 20px !important;
+
+  color: var(--color-text-soft) !important;
+
+  font-weight: 800;
+  text-align: center !important;
+
+  background: var(--color-surface-soft);
+}
+
+/* Responsive */
+
+@media (max-width: 680px) {
+  .appointmentsManager {
+    gap: 18px;
+  }
+
+  .appointmentsManager__tableWrapper {
+    border-radius: var(--radius-md);
+  }
+
+  .appointmentsManager__table {
+    min-width: 860px;
+  }
+
+  .appointmentsManager__table th,
+  .appointmentsManager__table td {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .appointmentsManager__error {
+    padding: 14px 16px;
+
+    font-size: 0.92rem;
+  }
+}

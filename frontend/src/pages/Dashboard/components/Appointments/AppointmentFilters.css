@@ -1,0 +1,274 @@
+/* AppointmentFilters.css */
+/* Filtros del listado administrativo de reservas. */
+
+/* Contenedor */
+
+.appointmentFilters {
+  display: grid;
+  gap: 18px;
+
+  padding: 22px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+}
+
+/* Buscador */
+
+.appointmentFilters__search {
+  display: grid;
+  gap: 8px;
+}
+
+.appointmentFilters__search label {
+  color: var(--color-text-soft);
+
+  font-size: 0.78rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.appointmentFilters__search input {
+  width: 100%;
+  min-height: 48px;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-full);
+
+  color: var(--color-text);
+  font-weight: 600;
+
+  background: white;
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.appointmentFilters__search input::placeholder {
+  color: rgba(94, 85, 77, 0.62);
+}
+
+.appointmentFilters__search input:focus {
+  border-color: rgba(184, 109, 61, 0.78);
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.13),
+    var(--shadow-card);
+}
+
+/* Grid */
+
+.appointmentFilters__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Campo */
+
+.appointmentFilters__field {
+  position: relative;
+
+  display: grid;
+  gap: 8px;
+}
+
+.appointmentFilters__field > span {
+  color: var(--color-text-soft);
+
+  font-size: 0.78rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Dropdown */
+
+.appointmentFilters__dropdown {
+  position: relative;
+}
+
+.appointmentFilters__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 16px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-full);
+
+  color: var(--color-text);
+  font-weight: 650;
+
+  cursor: pointer;
+
+  background: white;
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+}
+
+.appointmentFilters__trigger span {
+  color: var(--color-text);
+
+  font-size: 0.92rem;
+  font-weight: 650;
+
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.appointmentFilters__trigger svg {
+  flex-shrink: 0;
+
+  color: var(--color-gold);
+
+  font-size: 0.78rem;
+
+  transition: transform var(--transition-base);
+}
+
+.appointmentFilters__trigger:hover,
+.appointmentFilters__dropdown--open .appointmentFilters__trigger {
+  border-color: rgba(184, 109, 61, 0.78);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.12),
+    var(--shadow-card);
+}
+
+.appointmentFilters__dropdown--open .appointmentFilters__trigger svg {
+  transform: rotate(180deg);
+}
+
+/* Menú */
+
+.appointmentFilters__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding: 8px;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-lg);
+
+  background: white;
+
+  box-shadow: var(--shadow-panel);
+
+  animation: appointmentFiltersMenu 160ms ease;
+}
+
+.appointmentFilters__option {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 40px;
+
+  padding: 0 12px;
+
+  border-radius: var(--radius-md);
+
+  color: var(--color-text);
+  font-weight: 650;
+  text-align: left;
+
+  cursor: pointer;
+
+  background: transparent;
+
+  transition:
+    color var(--transition-base),
+    background var(--transition-base),
+    transform var(--transition-base);
+}
+
+.appointmentFilters__option:hover {
+  color: var(--color-text);
+
+  background: rgba(184, 109, 61, 0.1);
+
+  transform: translateX(2px);
+}
+
+.appointmentFilters__option--active {
+  color: var(--color-text-light);
+
+  background: var(--color-gold);
+}
+
+/* Animación */
+
+@keyframes appointmentFiltersMenu {
+  from {
+    opacity: 0;
+
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .appointmentFilters__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .appointmentFilters {
+    padding: 18px;
+  }
+
+  .appointmentFilters__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentFilters__search input,
+  .appointmentFilters__trigger {
+    min-height: 44px;
+  }
+
+  .appointmentFilters__menu {
+    position: relative;
+    top: auto;
+
+    margin-top: 8px;
+  }
+}

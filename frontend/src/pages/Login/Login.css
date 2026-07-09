@@ -1,0 +1,382 @@
+/* Login.css */
+/* Página de acceso privado para administradores. */
+
+.login {
+  min-height: 100vh;
+  padding: 34px 0 72px;
+
+  background: var(--bg-page);
+}
+
+.login__container {
+  display: grid;
+  gap: 28px;
+}
+
+.login__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  width: fit-content;
+
+  color: var(--color-text-soft);
+  font-weight: 800;
+
+  transition:
+    color var(--transition-base),
+    transform var(--transition-base);
+}
+
+.login__back:hover {
+  color: var(--color-text);
+  transform: translateX(-2px);
+}
+
+.login__panel {
+  display: grid;
+  overflow: hidden;
+
+  border: 1px solid rgba(17, 19, 21, 0.1);
+  border-radius: var(--radius-xl);
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-panel);
+}
+
+/* ---------- Panel izquierdo ---------- */
+
+.login__visual {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 360px;
+  padding: 28px;
+
+  color: var(--color-text-light);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(17, 19, 21, 0.94),
+      rgba(17, 19, 21, 0.72)
+    ),
+    url("../../assets/hero/hero.png")
+    center / cover;
+}
+
+.login__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 42%,
+      rgba(17, 19, 21, 0.32)
+    );
+
+  pointer-events: none;
+}
+
+.login__brand,
+.login__visualContent {
+  position: relative;
+  z-index: 1;
+}
+
+.login__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.login__brand img {
+  width: 46px;
+  height: 46px;
+
+  padding: 7px;
+
+  border-radius: 50%;
+
+  object-fit: contain;
+
+  background: var(--color-text-light);
+}
+
+.login__visualContent {
+  max-width: 520px;
+}
+
+.login__visual .eyebrow {
+  color: var(--color-gold-soft);
+}
+
+.login__title {
+  margin-top: 16px;
+
+  color: var(--color-text-light);
+  font-size: clamp(2.6rem, 9vw, 5rem);
+}
+
+.login__visualContent p {
+  margin-top: 18px;
+
+  color: rgba(250, 247, 242, 0.78);
+  line-height: 1.7;
+}
+
+/* ---------- Formulario ---------- */
+
+.login__form {
+  display: grid;
+  gap: 22px;
+
+  padding: 28px;
+}
+
+.login__formHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.login__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+
+  color: var(--color-text-light);
+
+  background: var(--color-gold);
+
+  box-shadow: var(--shadow-gold);
+}
+
+.login__formHeader h2 {
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: 2rem;
+}
+
+.login__formHeader p {
+  margin-top: 4px;
+
+  color: var(--color-text-soft);
+}
+
+.login__error {
+  padding: 14px 16px;
+
+  border: 1px solid rgba(182, 71, 71, 0.18);
+  border-radius: var(--radius-md);
+
+  color: var(--color-error);
+  font-weight: 800;
+
+  background: var(--color-error-soft);
+}
+
+/* ---------- Campos ---------- */
+
+.login__field {
+  display: grid;
+  gap: 10px;
+}
+
+.login__field span {
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.login__field input,
+.login__password {
+  width: 100%;
+  min-height: 52px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-md);
+
+  background: white;
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.login__field input {
+  padding: 0 16px;
+
+  color: var(--color-text);
+}
+
+.login__password {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0 16px;
+}
+
+.login__password > svg {
+  flex-shrink: 0;
+
+  color: var(--color-gold);
+}
+
+.login__password input {
+  flex: 1;
+
+  min-height: auto;
+  padding: 0;
+  border: none;
+
+  color: var(--color-text);
+
+  background: transparent;
+  box-shadow: none;
+}
+
+.login__password:focus-within,
+.login__field input:focus {
+  border-color: rgba(184, 109, 61, 0.78);
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.13),
+    var(--shadow-card);
+
+  transform: translateY(-1px);
+}
+
+/* ---------- Mostrar contraseña ---------- */
+
+.login__togglePassword {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-soft);
+
+  transition: color var(--transition-base);
+}
+
+.login__togglePassword:hover {
+  color: var(--color-gold);
+}
+
+.login__togglePassword svg {
+  color: inherit;
+}
+
+/* ---------- Recuperar contraseña ---------- */
+
+.login__forgot {
+  justify-self: end;
+
+  color: var(--color-gold-hover);
+
+  font-size: 0.9rem;
+  font-weight: 800;
+
+  transition: color var(--transition-base);
+}
+
+.login__forgot:hover {
+  color: var(--color-text);
+}
+
+/* ---------- Botón ---------- */
+
+.login__submit {
+  width: 100%;
+}
+
+.login__submit:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.7;
+
+  transform: none;
+}
+
+/* ---------- Nota ---------- */
+
+.login__note {
+  color: var(--color-text-soft);
+
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 920px) {
+  .login {
+    display: grid;
+    align-items: center;
+
+    padding: 44px 0;
+  }
+
+  .login__panel {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .login__visual {
+    min-height: 620px;
+    padding: 42px;
+  }
+
+  .login__form {
+    align-content: center;
+
+    padding: 46px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 560px) {
+  .login__visual {
+    min-height: 300px;
+    padding: 24px;
+  }
+
+  .login__form {
+    padding: 22px;
+  }
+
+  .login__formHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .login__forgot {
+    justify-self: start;
+  }
+
+  .login__title {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+}

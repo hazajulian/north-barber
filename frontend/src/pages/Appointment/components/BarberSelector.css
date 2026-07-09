@@ -1,0 +1,214 @@
+/* BarberSelector.css */
+/* Selector visual de barberos disponibles. */
+
+.barberSelector {
+  display: grid;
+  gap: 22px;
+}
+
+.barberSelector__header {
+  display: grid;
+  gap: 10px;
+}
+
+.barberSelector__title {
+  color: var(--color-text);
+
+  font-family: var(--font-title);
+  font-size: clamp(1.75rem, 4vw, 2.45rem);
+  line-height: 1.08;
+}
+
+.barberSelector__text {
+  max-width: 640px;
+
+  color: var(--color-text-soft);
+  line-height: 1.65;
+}
+
+.barberSelector__grid {
+  display: grid;
+  gap: 14px;
+}
+
+.barberSelector__card {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  min-height: 104px;
+  padding: 15px;
+
+  border: 1px solid rgba(17, 19, 21, 0.12);
+  border-radius: var(--radius-lg);
+
+  text-align: left;
+
+  background: var(--color-surface);
+
+  box-shadow: var(--shadow-soft);
+
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+}
+
+.barberSelector__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(184, 109, 61, 0.07);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity var(--transition-base);
+}
+
+.barberSelector__card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(17, 19, 21, 0.2);
+
+  background: white;
+
+  box-shadow: var(--shadow-card);
+}
+
+.barberSelector__card:hover::before {
+  opacity: 1;
+}
+
+.barberSelector__card--active {
+  border-color: rgba(184, 109, 61, 0.72);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(184, 109, 61, 0.12),
+    var(--shadow-card);
+}
+
+.barberSelector__card--active::before {
+  opacity: 1;
+}
+
+.barberSelector__card--auto {
+  border-style: dashed;
+}
+
+.barberSelector__imageWrap {
+  position: relative;
+  z-index: 1;
+
+  flex: 0 0 68px;
+  overflow: hidden;
+
+  width: 68px;
+  height: 68px;
+  padding: 4px;
+  border-radius: 50%;
+
+  background: var(--color-surface-dark);
+
+  box-shadow: 0 10px 22px rgba(17, 19, 21, 0.16);
+}
+
+.barberSelector__imageWrap--auto {
+  background: var(--color-gold);
+}
+
+.barberSelector__image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.barberSelector__placeholder {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+  color: var(--color-text-light);
+  font-family: var(--font-title);
+  font-size: 1.9rem;
+  font-weight: 700;
+
+  background: var(--color-surface-dark-soft);
+}
+
+.barberSelector__imageWrap--auto .barberSelector__placeholder {
+  color: var(--color-text-light);
+  background: var(--color-gold-hover);
+}
+
+.barberSelector__info {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  gap: 5px;
+}
+
+.barberSelector__info h3 {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.barberSelector__info p {
+  color: var(--color-text-soft);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+@media (min-width: 760px) {
+  .barberSelector__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .barberSelector__grid {
+    gap: 12px;
+  }
+
+  .barberSelector__card {
+    min-height: 96px;
+    padding: 13px;
+    border-radius: var(--radius-md);
+  }
+
+  .barberSelector__imageWrap {
+    flex-basis: 58px;
+
+    width: 58px;
+    height: 58px;
+  }
+
+  .barberSelector__placeholder {
+    font-size: 1.45rem;
+  }
+
+  .barberSelector__info h3 {
+    font-size: 0.96rem;
+  }
+
+  .barberSelector__info p {
+    font-size: 0.82rem;
+  }
+}

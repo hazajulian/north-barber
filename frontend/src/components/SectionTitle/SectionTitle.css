@@ -1,0 +1,61 @@
+/* SectionTitle.css */
+/* Títulos reutilizables para secciones. */
+
+.sectionTitle {
+  max-width: 720px;
+  margin-bottom: 38px;
+}
+
+.sectionTitle--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sectionTitle--center .eyebrow {
+  justify-content: center;
+}
+
+.sectionTitle__title {
+  margin-top: 14px;
+
+  color: var(--color-text);
+  font-size: clamp(2.35rem, 7vw, 4.55rem);
+}
+
+.sectionTitle__text {
+  max-width: 680px;
+  margin-top: 16px;
+
+  color: var(--color-text-soft);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.section--dark .sectionTitle__title,
+.appointmentCta .sectionTitle__title {
+  color: var(--color-text-light);
+}
+
+.section--dark .sectionTitle__text,
+.appointmentCta .sectionTitle__text {
+  color: var(--color-text-light-soft);
+}
+
+.section--dark .eyebrow,
+.appointmentCta .eyebrow {
+  color: var(--color-gold-soft);
+}
+
+@media (max-width: 760px) {
+  .sectionTitle {
+    margin-bottom: 30px;
+  }
+
+  .sectionTitle__title {
+    font-size: clamp(2.35rem, 12vw, 3.65rem);
+  }
+
+  .sectionTitle__text {
+    font-size: 0.96rem;
+  }
+}
