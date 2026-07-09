@@ -59,27 +59,24 @@ export async function updateBarberService(
   barberData,
   userId = null
 ) {
-  const existingBarber =
-    await getBarberDetailService(id);
+  const existingBarber = await getBarberDetailService(id);
 
-  const previousImage =
-    existingBarber.image_url;
+  const previousImage = existingBarber.image_url;
+  const previousPublicId = existingBarber.image_public_id;
 
   if (!barberData.image_url) {
     barberData.image_url = previousImage;
+    barberData.image_public_id = previousPublicId;
   }
 
-  const barber = await updateBarber(
-    id,
-    barberData
-  );
+  const barber = await updateBarber(id, barberData);
 
   if (
     previousImage &&
     barber.image_url &&
     barber.image_url !== previousImage
   ) {
-    await deleteFile(previousImage);
+    await deleteFile(previousImage, previousPublicId);
   }
 
   await registerAuditLog({
@@ -93,15 +90,10 @@ export async function updateBarberService(
   return barber;
 }
 
-export async function toggleBarberService(
-  id,
-  userId = null
-) {
-  const barber =
-    await getBarberDetailService(id);
+export async function toggleBarberService(id, userId = null) {
+  const barber = await getBarberDetailService(id);
 
-  const updatedBarber =
-    await toggleBarber(id);
+  const updatedBarber = await toggleBarber(id);
 
   await registerAuditLog({
     userId,
@@ -122,8 +114,7 @@ export async function deleteBarberPermanentlyService(
   id,
   userId = null
 ) {
-  const barber =
-    await getBarberDetailService(id);
+  const barber = await getBarberDetailService(id);
 
   const activeAppointments =
     await countActiveBarberAppointments(id);
@@ -138,17 +129,16 @@ export async function deleteBarberPermanentlyService(
     throw error;
   }
 
-  await updateAppointmentsBarberSnapshot(
-    id,
-    barber.name
-  );
+  await updateAppointmentsBarberSnapshot(id, barber.name);
 
   if (barber.image_url) {
-    await deleteFile(barber.image_url);
+    await deleteFile(
+      barber.image_url,
+      barber.image_public_id
+    );
   }
 
-  const deletedBarber =
-    await deleteBarberPermanently(id);
+  const deletedBarber = await deleteBarberPermanently(id);
 
   await registerAuditLog({
     userId,

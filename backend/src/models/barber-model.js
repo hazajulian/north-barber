@@ -36,6 +36,7 @@ export async function createBarber(barberData) {
     email,
     phone,
     image_url,
+    image_public_id,
   } = barberData;
 
   const [result] = await pool.query(
@@ -48,9 +49,10 @@ export async function createBarber(barberData) {
         email,
         phone,
         image_url,
+        image_public_id,
         is_active
       )
-      VALUES (?, ?, ?, ?, ?, ?, TRUE)
+      VALUES (?, ?, ?, ?, ?, ?, ?, TRUE)
     `,
     [
       name,
@@ -59,16 +61,14 @@ export async function createBarber(barberData) {
       email || null,
       phone || null,
       image_url,
+      image_public_id || null,
     ]
   );
 
   return getBarberById(result.insertId);
 }
 
-export async function updateBarber(
-  id,
-  barberData
-) {
+export async function updateBarber(id, barberData) {
   const {
     name,
     specialty,
@@ -76,6 +76,7 @@ export async function updateBarber(
     email,
     phone,
     image_url,
+    image_public_id,
     is_active,
   } = barberData;
 
@@ -89,6 +90,7 @@ export async function updateBarber(
         email = ?,
         phone = ?,
         image_url = ?,
+        image_public_id = ?,
         is_active = ?
       WHERE id = ?
     `,
@@ -99,6 +101,7 @@ export async function updateBarber(
       email || null,
       phone || null,
       image_url,
+      image_public_id || null,
       is_active ? 1 : 0,
       id,
     ]
@@ -117,10 +120,7 @@ export async function updateAppointmentsBarberSnapshot(
       SET barber_name_snapshot = ?
       WHERE barber_id = ?
     `,
-    [
-      barberName,
-      barberId,
-    ]
+    [barberName, barberId]
   );
 }
 
@@ -151,11 +151,8 @@ export async function countActiveBarberAppointments(id) {
   return Number(rows[0].total);
 }
 
-export async function deleteBarberPermanently(
-  id
-) {
-  const barber =
-    await getBarberById(id);
+export async function deleteBarberPermanently(id) {
+  const barber = await getBarberById(id);
 
   await pool.query(
     `

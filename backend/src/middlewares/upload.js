@@ -1,29 +1,10 @@
 // middlewares/upload.js
-// Configura la subida de imagenes utilizando Multer.
+// Configura la subida de imagenes utilizando Multer en memoria.
 
-import fs from "fs";
 import path from "path";
-
 import multer from "multer";
 
-import { generateFilename } from "../utils/file.js";
-
-const uploadDirectory = path.resolve("uploads/barbers");
-
-// Crea la carpeta automaticamente si no existe.
-fs.mkdirSync(uploadDirectory, {
-  recursive: true,
-});
-
-const storage = multer.diskStorage({
-  destination(req, file, callback) {
-    callback(null, uploadDirectory);
-  },
-
-  filename(req, file, callback) {
-    callback(null, generateFilename(file.originalname));
-  },
-});
+const storage = multer.memoryStorage();
 
 function imageFilter(req, file, callback) {
   const allowedMimeTypes = [
@@ -40,7 +21,9 @@ function imageFilter(req, file, callback) {
     ".webp",
   ];
 
-  const extension = path.extname(file.originalname).toLowerCase();
+  const extension = path
+    .extname(file.originalname)
+    .toLowerCase();
 
   const validMime = allowedMimeTypes.includes(file.mimetype);
   const validExtension = allowedExtensions.includes(extension);

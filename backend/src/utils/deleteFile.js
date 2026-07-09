@@ -1,19 +1,28 @@
 // utils/deleteFile.js
-// Elimina archivos del disco si existen.
+// Elimina imagenes locales antiguas o imagenes de Cloudinary.
 
 import fs from "fs/promises";
 import path from "path";
 
-export async function deleteFile(filePath) {
-  if (!filePath) {
+import cloudinary from "../config/cloudinary.js";
+
+export async function deleteFile(filePath, publicId = null) {
+  if (publicId) {
+    try {
+      await cloudinary.uploader.destroy(publicId);
+      return;
+    } catch (error) {
+      console.error("Failed to delete Cloudinary image:");
+      console.error(error);
+      return;
+    }
+  }
+
+  if (!filePath || /^https?:\/\//i.test(filePath)) {
     return;
   }
 
   try {
-    // Convierte:
-    // /uploads/barbers/imagen.png
-    // en:
-    // uploads/barbers/imagen.png
     const relativePath = filePath.replace(/^[/\\]+/, "");
 
     const absolutePath = path.join(
@@ -23,12 +32,11 @@ export async function deleteFile(filePath) {
 
     await fs.unlink(absolutePath);
   } catch (error) {
-    // Si el archivo ya no existe simplemente lo ignoramos.
     if (error.code === "ENOENT") {
       return;
     }
 
-    console.error("Failed to delete file:");
+    console.error("Failed to delete local file:");
     console.error(error);
   }
 }
