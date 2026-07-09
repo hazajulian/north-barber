@@ -10,9 +10,9 @@ Este proyecto fue creado como parte de mi portfolio profesional con el objetivo 
 
 # Vista previa
 
-> **Frontend:** *(Agregar la URL de Vercel una vez realizado el deploy)*
+> **Frontend:** https://north-barber.vercel.app
 
-> **Backend:** *(Agregar la URL de Render una vez realizado el deploy)*
+> **Backend:** https://north-barber.onrender.com
 
 ---
 

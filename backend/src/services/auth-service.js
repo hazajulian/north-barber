@@ -26,15 +26,19 @@ import {
   verifyResetPasswordToken,
 } from "../utils/token.js";
 
-async function safeSendMail(callback) {
-  try {
-    await callback();
-  } catch (error) {
-    console.error(
-      "Mail service error:",
-      error.message
-    );
+function safeSendMail(callback) {
+  if (process.env.MAIL_ENABLED !== "true") {
+    return;
   }
+
+  Promise.resolve()
+    .then(callback)
+    .catch((error) => {
+      console.error(
+        "Mail service error:",
+        error.message
+      );
+    });
 }
 
 export async function loginAdmin(
@@ -81,7 +85,7 @@ export async function loginAdmin(
     description: `El administrador ${user.email} inicio sesion.`,
   });
 
-  await safeSendMail(() =>
+  safeSendMail(() =>
     sendLoginAlertEmail(user, details)
   );
 
@@ -176,14 +180,14 @@ export async function changeEmail(
     description: `El administrador cambio su correo de ${oldEmail} a ${normalizedEmail}.`,
   });
 
-  await safeSendMail(() =>
+  safeSendMail(() =>
     sendEmailChangedToOldEmail(
       user,
       normalizedEmail
     )
   );
 
-  await safeSendMail(() =>
+  safeSendMail(() =>
     sendEmailChangedToNewEmail(
       updatedUser,
       oldEmail
@@ -248,7 +252,7 @@ export async function changePassword(
     description: `El administrador ${user.email} cambio su contraseña.`,
   });
 
-  await safeSendMail(() =>
+  safeSendMail(() =>
     sendPasswordChangedEmail(user)
   );
 
@@ -274,7 +278,7 @@ export async function requestPasswordReset(email) {
   const token =
     generateResetPasswordToken(user);
 
-  await safeSendMail(() =>
+  safeSendMail(() =>
     sendResetPasswordEmail(user, token)
   );
 
@@ -345,7 +349,7 @@ export async function resetPassword(
     description: `El administrador ${publicUser.email} restablecio su contraseña.`,
   });
 
-  await safeSendMail(() =>
+  safeSendMail(() =>
     sendPasswordChangedEmail(user || publicUser)
   );
 

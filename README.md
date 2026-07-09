@@ -10,9 +10,9 @@ North Barber is a complete portfolio project that simulates the operation of a r
 
 # Preview
 
-> **Frontend:** *(Add your Vercel URL here after deployment)*
+> **Frontend:** https://north-barber.vercel.app
 
-> **Backend API:** *(Add your Render URL here after deployment)*
+> **Backend API:** https://north-barber.onrender.com
 
 ---
 
