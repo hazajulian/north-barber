@@ -1,24 +1,9 @@
 // BarberSelector.jsx
 // Permite seleccionar el barbero para la reserva.
 
+import { getImageUrl } from "../../../utils/getImageUrl";
+
 import "./BarberSelector.css";
-
-function getImageUrl(imageUrl) {
-  if (!imageUrl) {
-    return "";
-  }
-
-  if (imageUrl.startsWith("http")) {
-    return imageUrl;
-  }
-
-  const baseUrl = (
-    import.meta.env.VITE_API_URL ||
-    "http://localhost:3000/api/v1"
-  ).replace("/api/v1", "");
-
-  return `${baseUrl}${imageUrl}`;
-}
 
 export function BarberSelector({
   barbers,
