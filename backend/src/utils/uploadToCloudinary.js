@@ -3,25 +3,13 @@
 
 import cloudinary from "../config/cloudinary.js";
 
-export function uploadToCloudinary(
-  fileBuffer,
-  folder = "north-barber/barbers"
-) {
+export function uploadToCloudinary(fileBuffer) {
   return new Promise((resolve, reject) => {
     const uploadStream =
       cloudinary.uploader.upload_stream(
         {
-          folder,
+          folder: "north-barber/barbers",
           resource_type: "image",
-          transformation: [
-            {
-              width: 900,
-              height: 900,
-              crop: "limit",
-              quality: "auto",
-              fetch_format: "auto",
-            },
-          ],
         },
         (error, result) => {
           if (error) {
