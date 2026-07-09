@@ -12,11 +12,14 @@ import {
   updateBarberService,
 } from "../services/barber-service.js";
 
-import { uploadToCloudinary } from "../utils/uploadToCloudinary.js";
 import { sendSuccess } from "../utils/response.js";
 
 function cleanOptionalValue(value) {
-  if (value === "" || value === undefined || value === null) {
+  if (
+    value === "" ||
+    value === undefined ||
+    value === null
+  ) {
     return null;
   }
 
@@ -36,9 +39,18 @@ function parseBoolean(value) {
   );
 }
 
+function convertImageToBase64(file) {
+  if (!file) {
+    return null;
+  }
+
+  return `data:${file.mimetype};base64,${file.buffer.toString("base64")}`;
+}
+
 export async function listBarbers(req, res, next) {
   try {
-    const barbers = await getActiveBarbersService();
+    const barbers =
+      await getActiveBarbersService();
 
     return sendSuccess(
       res,
@@ -50,9 +62,14 @@ export async function listBarbers(req, res, next) {
   }
 }
 
-export async function listAllBarbers(req, res, next) {
+export async function listAllBarbers(
+  req,
+  res,
+  next
+) {
   try {
-    const barbers = await getAllBarbersService();
+    const barbers =
+      await getAllBarbersService();
 
     return sendSuccess(
       res,
@@ -64,9 +81,16 @@ export async function listAllBarbers(req, res, next) {
   }
 }
 
-export async function getBarber(req, res, next) {
+export async function getBarber(
+  req,
+  res,
+  next
+) {
   try {
-    const barber = await getBarberDetailService(req.params.id);
+    const barber =
+      await getBarberDetailService(
+        req.params.id
+      );
 
     return sendSuccess(
       res,
@@ -78,30 +102,38 @@ export async function getBarber(req, res, next) {
   }
 }
 
-export async function createNewBarber(req, res, next) {
+export async function createNewBarber(
+  req,
+  res,
+  next
+) {
   try {
     if (!req.file) {
-      const error = new Error("Barber image is required");
+      const error = new Error(
+        "Barber image is required"
+      );
+
       error.statusCode = 400;
+
       throw error;
     }
 
-    const uploadedImage = await uploadToCloudinary(req.file.buffer);
-
     const barberData = {
       name: cleanRequiredValue(req.body.name),
-      specialty: cleanRequiredValue(req.body.specialty),
+      specialty: cleanRequiredValue(
+        req.body.specialty
+      ),
       bio: cleanRequiredValue(req.body.bio),
       email: cleanOptionalValue(req.body.email),
       phone: cleanOptionalValue(req.body.phone),
-      image_url: uploadedImage.image_url,
-      image_public_id: uploadedImage.image_public_id,
+      image_url: convertImageToBase64(req.file),
     };
 
-    const barber = await createNewBarberService(
-      barberData,
-      req.user.id
-    );
+    const barber =
+      await createNewBarberService(
+        barberData,
+        req.user.id
+      );
 
     return sendSuccess(
       res,
@@ -114,29 +146,36 @@ export async function createNewBarber(req, res, next) {
   }
 }
 
-export async function editBarber(req, res, next) {
+export async function editBarber(
+  req,
+  res,
+  next
+) {
   try {
     const barberData = {
       name: cleanRequiredValue(req.body.name),
-      specialty: cleanRequiredValue(req.body.specialty),
+      specialty: cleanRequiredValue(
+        req.body.specialty
+      ),
       bio: cleanRequiredValue(req.body.bio),
       email: cleanOptionalValue(req.body.email),
       phone: cleanOptionalValue(req.body.phone),
-      is_active: parseBoolean(req.body.is_active),
+      is_active: parseBoolean(
+        req.body.is_active
+      ),
     };
 
     if (req.file) {
-      const uploadedImage = await uploadToCloudinary(req.file.buffer);
-
-      barberData.image_url = uploadedImage.image_url;
-      barberData.image_public_id = uploadedImage.image_public_id;
+      barberData.image_url =
+        convertImageToBase64(req.file);
     }
 
-    const barber = await updateBarberService(
-      req.params.id,
-      barberData,
-      req.user.id
-    );
+    const barber =
+      await updateBarberService(
+        req.params.id,
+        barberData,
+        req.user.id
+      );
 
     return sendSuccess(
       res,
@@ -148,12 +187,17 @@ export async function editBarber(req, res, next) {
   }
 }
 
-export async function toggleBarber(req, res, next) {
+export async function toggleBarber(
+  req,
+  res,
+  next
+) {
   try {
-    const barber = await toggleBarberService(
-      req.params.id,
-      req.user.id
-    );
+    const barber =
+      await toggleBarberService(
+        req.params.id,
+        req.user.id
+      );
 
     return sendSuccess(
       res,
@@ -165,12 +209,17 @@ export async function toggleBarber(req, res, next) {
   }
 }
 
-export async function deleteBarberPermanently(req, res, next) {
+export async function deleteBarberPermanently(
+  req,
+  res,
+  next
+) {
   try {
-    const barber = await deleteBarberPermanentlyService(
-      req.params.id,
-      req.user.id
-    );
+    const barber =
+      await deleteBarberPermanentlyService(
+        req.params.id,
+        req.user.id
+      );
 
     return sendSuccess(
       res,
@@ -184,12 +233,17 @@ export async function deleteBarberPermanently(req, res, next) {
 
 /* Compatibilidad con la ruta DELETE antigua */
 
-export async function removeBarber(req, res, next) {
+export async function removeBarber(
+  req,
+  res,
+  next
+) {
   try {
-    const barber = await disableBarberService(
-      req.params.id,
-      req.user.id
-    );
+    const barber =
+      await disableBarberService(
+        req.params.id,
+        req.user.id
+      );
 
     return sendSuccess(
       res,

@@ -12,12 +12,14 @@ export function getImageUrl(imagePath) {
     return "";
   }
 
-  // Si ya viene una URL completa.
+  if (imagePath.startsWith("data:image")) {
+    return imagePath;
+  }
+
   if (/^https?:\/\//i.test(imagePath)) {
     return imagePath;
   }
 
-  // Asegura que exista una sola "/"
   const normalizedPath = imagePath.startsWith("/")
     ? imagePath
     : `/${imagePath}`;
