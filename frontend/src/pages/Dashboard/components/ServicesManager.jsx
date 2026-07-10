@@ -1,7 +1,7 @@
 // ServicesManager.jsx
 // Administra el listado, creación, edición, activación y eliminación de servicios.
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   FaCheck,
   FaEdit,
@@ -30,6 +30,8 @@ function getServiceDuration(service) {
 }
 
 export function ServicesManager({ services, onRefresh }) {
+  const formRef = useRef(null);
+
   const [showForm, setShowForm] = useState(false);
   const [editingService, setEditingService] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -40,16 +42,27 @@ export function ServicesManager({ services, onRefresh }) {
   const [modalType, setModalType] = useState("toggle");
   const [modalError, setModalError] = useState("");
 
+  function scrollToForm() {
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
+  }
+
   function handleNewService() {
     setEditingService(null);
     setShowForm(true);
     setError("");
+    scrollToForm();
   }
 
   function handleEdit(service) {
     setEditingService(service);
     setShowForm(true);
     setError("");
+    scrollToForm();
   }
 
   function handleCancel() {
@@ -209,12 +222,17 @@ Volverá a estar disponible para nuevas reservas.`;
         )}
 
         {showForm && (
-          <ServiceForm
-            service={editingService}
-            loading={loading}
-            onSubmit={handleSubmit}
-            onCancel={handleCancel}
-          />
+          <div
+            ref={formRef}
+            className="servicesManager__formAnchor"
+          >
+            <ServiceForm
+              service={editingService}
+              loading={loading}
+              onSubmit={handleSubmit}
+              onCancel={handleCancel}
+            />
+          </div>
         )}
 
         <div className="servicesManager__grid">

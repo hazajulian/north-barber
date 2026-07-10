@@ -97,6 +97,13 @@ function isPastSlot(date, time) {
   return slotDate <= now;
 }
 
+function scrollToAppointmentTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
 export function Appointment() {
   const [services, setServices] = useState([]);
   const [barbers, setBarbers] = useState([]);
@@ -289,9 +296,15 @@ export function Appointment() {
     }));
   }
 
-  function moveToStep(step) {
+  function moveToStep(step, scrollToTop = true) {
     setError("");
     setCurrentStep(step);
+
+    if (scrollToTop) {
+      setTimeout(() => {
+        scrollToAppointmentTop();
+      }, 60);
+    }
   }
 
   function handleInputChange(event) {
@@ -416,21 +429,25 @@ export function Appointment() {
 
     if (currentStep === 1 && !formData.serviceId) {
       setError("Elegí un servicio para continuar.");
+      scrollToAppointmentTop();
       return;
     }
 
     if (currentStep === 2 && !formData.barberChoice) {
       setError("Elegí un barbero o la opción sin preferencia.");
+      scrollToAppointmentTop();
       return;
     }
 
     if (currentStep === 3 && !formData.appointmentDate) {
       setError("Elegí un día para continuar.");
+      scrollToAppointmentTop();
       return;
     }
 
     if (currentStep === 4 && !formData.appointmentTime) {
       setError("Elegí un horario disponible.");
+      scrollToAppointmentTop();
       return;
     }
 
@@ -443,6 +460,7 @@ export function Appointment() {
       )
     ) {
       setError("Completá tus datos obligatorios.");
+      scrollToAppointmentTop();
       return;
     }
 
@@ -467,6 +485,10 @@ export function Appointment() {
     setAvailableSlots([]);
     setCreatedAppointment(null);
     setError("");
+
+    setTimeout(() => {
+      scrollToAppointmentTop();
+    }, 60);
   }
 
   async function handleSubmit(event) {
@@ -484,6 +506,7 @@ export function Appointment() {
       !formData.customerPhone
     ) {
       setError("Completá todos los datos obligatorios.");
+      scrollToAppointmentTop();
       return;
     }
 
@@ -494,6 +517,7 @@ export function Appointment() {
       )
     ) {
       setError("Ese horario ya pasó. Elegí otro horario disponible.");
+      scrollToAppointmentTop();
       return;
     }
 
@@ -524,6 +548,10 @@ export function Appointment() {
       );
 
       setAvailableSlots([]);
+
+      setTimeout(() => {
+        scrollToAppointmentTop();
+      }, 60);
     } catch (error) {
       console.error(error);
 
@@ -531,6 +559,8 @@ export function Appointment() {
         error.message ||
           "No se pudo crear la reserva."
       );
+
+      scrollToAppointmentTop();
     } finally {
       setSubmitting(false);
     }

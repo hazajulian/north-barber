@@ -62,6 +62,23 @@ export function Navbar() {
     setIsOpen(false);
   }
 
+  function scrollToTop(event) {
+    event.preventDefault();
+
+    closeMenu();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    history.replaceState(
+      null,
+      "",
+      window.location.pathname
+    );
+  }
+
   const navbarClass = `navbar ${
     isScrolled ? "navbar--scrolled" : ""
   }`;
@@ -73,10 +90,11 @@ export function Navbar() {
   return (
     <header className={navbarClass}>
       <div className="navbar__container">
+
         <a
-          href="#inicio"
+          href="/"
           className="navbar__brand"
-          onClick={closeMenu}
+          onClick={scrollToTop}
         >
           <img
             src={logo}
@@ -96,16 +114,27 @@ export function Navbar() {
         </a>
 
         <nav className={menuClass}>
-          {navLinks.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="navbar__link"
-              onClick={closeMenu}
-            >
-              {label}
-            </a>
-          ))}
+          {navLinks.map(({ label, href }) =>
+            label === "Inicio" ? (
+              <a
+                key={label}
+                href="/"
+                className="navbar__link"
+                onClick={scrollToTop}
+              >
+                {label}
+              </a>
+            ) : (
+              <a
+                key={label}
+                href={href}
+                className="navbar__link"
+                onClick={closeMenu}
+              >
+                {label}
+              </a>
+            )
+          )}
 
           <Link
             to="/appointment"
@@ -126,6 +155,7 @@ export function Navbar() {
         >
           {isOpen ? <HiX /> : <HiMenuAlt3 />}
         </button>
+
       </div>
     </header>
   );

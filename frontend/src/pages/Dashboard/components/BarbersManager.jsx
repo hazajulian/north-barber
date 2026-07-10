@@ -1,7 +1,7 @@
 // BarbersManager.jsx
 // Administra el listado, creación, edición, activación y eliminación de barberos.
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   FaCheck,
   FaEdit,
@@ -32,6 +32,8 @@ export function BarbersManager({
   barbers,
   onRefresh,
 }) {
+  const formRef = useRef(null);
+
   const [showForm, setShowForm] = useState(false);
 
   const [editingBarber, setEditingBarber] =
@@ -52,28 +54,31 @@ export function BarbersManager({
   const [modalType, setModalType] =
     useState("toggle");
 
-  /* Nuevo: estado del modal */
-
   const [modalError, setModalError] =
     useState("");
 
-  /* Nuevo barbero */
+  function scrollToForm() {
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
+  }
 
   function handleNewBarber() {
     setEditingBarber(null);
     setShowForm(true);
     setError("");
+    scrollToForm();
   }
-
-  /* Editar */
 
   function handleEdit(barber) {
     setEditingBarber(barber);
     setShowForm(true);
     setError("");
+    scrollToForm();
   }
-
-  /* Cancelar formulario */
 
   function handleCancel() {
     if (loading) return;
@@ -82,8 +87,6 @@ export function BarbersManager({
     setShowForm(false);
     setError("");
   }
-
-  /* Guardar */
 
   async function handleSubmit(barberData) {
     try {
@@ -113,16 +116,12 @@ export function BarbersManager({
     }
   }
 
-  /* Abrir modal activar/desactivar */
-
   function openToggleModal(barber) {
     setSelectedBarber(barber);
     setModalType("toggle");
     setModalError("");
     setModalOpen(true);
   }
-
-  /* Abrir modal eliminar */
 
   function openDeleteModal(barber) {
     setSelectedBarber(barber);
@@ -131,8 +130,6 @@ export function BarbersManager({
     setModalOpen(true);
   }
 
-  /* Cerrar modal */
-
   function closeModal() {
     if (loading) return;
 
@@ -140,8 +137,6 @@ export function BarbersManager({
     setSelectedBarber(null);
     setModalError("");
   }
-
-  /* Confirmar acción */
 
   async function confirmAction() {
     if (!selectedBarber) return;
@@ -161,9 +156,6 @@ export function BarbersManager({
 
       closeModal();
     } catch (error) {
-      /* Si el backend devuelve conflicto,
-         mostramos el mensaje dentro del modal */
-
       if (error.status === 409) {
         setModalError(
           error.message ||
@@ -184,8 +176,6 @@ export function BarbersManager({
     }
   }
 
-  /* Título del modal */
-
   function getModalTitle() {
     if (modalError) {
       return "No se puede eliminar";
@@ -203,8 +193,6 @@ export function BarbersManager({
       ? "Desactivar barbero"
       : "Activar barbero";
   }
-
-  /* Mensaje del modal */
 
   function getModalMessage() {
     if (modalError) {
@@ -232,12 +220,9 @@ No podrá recibir nuevas reservas, pero conservará todo su historial.`;
 Volverá a estar disponible para recibir nuevas reservas.`;
   }
 
-    return (
+  return (
     <>
       <div className="barbersManager">
-
-        {/* Botón superior */}
-
         <div className="barbersManager__top">
           <button
             type="button"
@@ -256,12 +241,17 @@ Volverá a estar disponible para recibir nuevas reservas.`;
         )}
 
         {showForm && (
-          <BarberForm
-            barber={editingBarber}
-            loading={loading}
-            onSubmit={handleSubmit}
-            onCancel={handleCancel}
-          />
+          <div
+            ref={formRef}
+            className="barbersManager__formAnchor"
+          >
+            <BarberForm
+              barber={editingBarber}
+              loading={loading}
+              onSubmit={handleSubmit}
+              onCancel={handleCancel}
+            />
+          </div>
         )}
 
         <div className="barbersManager__grid">
@@ -272,7 +262,6 @@ Volverá a estar disponible para recibir nuevas reservas.`;
                 className="barbersManager__card"
               >
                 <div className="barbersManager__profile">
-
                   <div className="barbersManager__avatar">
                     {barber.image_url ? (
                       <img
@@ -294,7 +283,6 @@ Volverá a estar disponible para recibir nuevas reservas.`;
                         "Sin especialidad cargada."}
                     </p>
                   </div>
-
                 </div>
 
                 <div className="barbersManager__meta">
@@ -310,7 +298,6 @@ Volverá a estar disponible para recibir nuevas reservas.`;
                 </div>
 
                 <div className="barbersManager__actions">
-
                   <button
                     type="button"
                     onClick={() => handleEdit(barber)}
@@ -348,9 +335,7 @@ Volverá a estar disponible para recibir nuevas reservas.`;
                     <FaTrash />
                     Eliminar
                   </button>
-
                 </div>
-
               </article>
             ))
           ) : (
@@ -359,7 +344,6 @@ Volverá a estar disponible para recibir nuevas reservas.`;
             </p>
           )}
         </div>
-
       </div>
 
       <ConfirmModal

@@ -159,7 +159,7 @@
   gap: 12px;
 
   min-width: 0;
-  padding: 13px 38px 13px 13px;
+  padding: 13px 50px 13px 13px;
 
   border: 1px solid rgba(17, 19, 21, 0.1);
   border-radius: var(--radius-lg);
@@ -252,27 +252,34 @@
 
 /* Botones */
 
-.notificationsPanel__hideButton {
+.notificationsPanel button.notificationsPanel__hideButton {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 5;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  width: 24px;
-  height: 24px;
-  padding: 0;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0 !important;
+  margin: 0;
 
   border: 1px solid rgba(17, 19, 21, 0.12);
   border-radius: var(--radius-full);
 
   color: var(--color-text-soft);
 
-  font-size: 0.68rem;
+  font-size: 0.78rem;
+  line-height: 1;
 
   background: var(--color-surface-soft);
+
+  overflow: hidden;
 
   transition:
     color var(--transition-fast),
@@ -280,10 +287,39 @@
     background var(--transition-fast);
 }
 
-.notificationsPanel__hideButton:hover {
+.notificationsPanel__hideIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  color: currentColor;
+  line-height: 1;
+}
+
+.notificationsPanel__hideIcon svg {
+  display: block;
+
+  width: 13px;
+  height: 13px;
+
+  color: currentColor;
+
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.notificationsPanel button.notificationsPanel__hideButton:hover {
   color: var(--color-text-light);
   border-color: var(--color-error);
   background: var(--color-error);
+}
+
+.notificationsPanel button.notificationsPanel__hideButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .notificationsPanel__readButton {
@@ -392,14 +428,23 @@
   }
 
   .notificationsPanel__item {
-    padding: 13px 36px 13px 13px;
+    padding: 12px 48px 12px 12px;
   }
 
-  .notificationsPanel__hideButton {
-    width: 23px;
-    height: 23px;
+  .notificationsPanel button.notificationsPanel__hideButton {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    padding: 0 !important;
+    border-radius: 50%;
+  }
 
-    font-size: 0.64rem;
+  .notificationsPanel__hideIcon svg {
+    width: 12px;
+    height: 12px;
   }
 
   .notificationsPanel__readButton {

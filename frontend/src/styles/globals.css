@@ -263,7 +263,7 @@ body {
 }
 
 @media (max-width: 520px) {
-  .btn {
+  .btn:not(.notificationsPanel__hideButton) {
     width: 100%;
     min-height: 44px;
     padding-inline: 16px;

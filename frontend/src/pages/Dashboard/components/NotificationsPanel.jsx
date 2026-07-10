@@ -245,15 +245,11 @@ export function NotificationsPanel({
 
   return (
     <div className="notificationsPanel">
-
       <div className="notificationsPanel__header">
-
         <div className="notificationsPanel__headerText">
           <h3>Centro de avisos</h3>
 
-          <span>
-            {unreadCount} sin leer
-          </span>
+          <span>{unreadCount} sin leer</span>
         </div>
 
         <button
@@ -267,7 +263,6 @@ export function NotificationsPanel({
         >
           Marcar todas
         </button>
-
       </div>
 
       {error && (
@@ -282,92 +277,77 @@ export function NotificationsPanel({
         </div>
       ) : notifications.length > 0 ? (
         <div className="notificationsPanel__body">
-
           <div className="notificationsPanel__list">
-
-            {notifications.map(
-              (notification) => (
-                <article
-                  key={notification.id}
-                  className={
-                    notification.is_read
-                      ? "notificationsPanel__item"
-                      : "notificationsPanel__item notificationsPanel__item--unread"
+            {notifications.map((notification) => (
+              <article
+                key={notification.id}
+                className={
+                  notification.is_read
+                    ? "notificationsPanel__item"
+                    : "notificationsPanel__item notificationsPanel__item--unread"
+                }
+              >
+                <button
+                  type="button"
+                  className="notificationsPanel__hideButton"
+                  aria-label="Eliminar notificación"
+                  title="Eliminar notificación"
+                  disabled={actionLoading}
+                  onClick={() =>
+                    handleDelete(notification.id)
                   }
                 >
-                  <button
-                    type="button"
-                    className="notificationsPanel__hideButton"
-                    aria-label="Eliminar notificación"
-                    title="Eliminar notificación"
-                    disabled={actionLoading}
-                    onClick={() =>
-                      handleDelete(
-                        notification.id
-                      )
-                    }
-                  >
-                    <FaTrashAlt />
-                  </button>
+                  <span className="notificationsPanel__hideIcon">
+                    <FaTrashAlt aria-hidden="true" />
+                  </span>
+                </button>
 
-                  <div className="notificationsPanel__content">
-
-                    <div className="notificationsPanel__titleRow">
-
-                      <strong>
-                        {getNotificationTitle(
-                          notification
-                        )}
-                      </strong>
-
-                      {!notification.is_read && (
-                        <span className="notificationsPanel__badge">
-                          Nueva
-                        </span>
+                <div className="notificationsPanel__content">
+                  <div className="notificationsPanel__titleRow">
+                    <strong>
+                      {getNotificationTitle(
+                        notification
                       )}
+                    </strong>
 
-                    </div>
-
-                    <p>
-                      {notification.message}
-                    </p>
-
-                    <small>
-                      {formatDate(
-                        notification.created_at
-                      )}
-                      {" · "}
-                      {formatTime(
-                        notification.created_at
-                      )}
-                    </small>
-
+                    {!notification.is_read && (
+                      <span className="notificationsPanel__badge">
+                        Nueva
+                      </span>
+                    )}
                   </div>
 
-                  {!notification.is_read && (
-                    <button
-                      type="button"
-                      className="notificationsPanel__readButton"
-                      disabled={actionLoading}
-                      onClick={() =>
-                        handleRead(
-                          notification.id
-                        )
-                      }
-                    >
-                      Marcar leída
-                    </button>
-                  )}
+                  <p>{notification.message}</p>
 
-                </article>
-              )
-            )}
+                  <small>
+                    {formatDate(
+                      notification.created_at
+                    )}
+                    {" · "}
+                    {formatTime(
+                      notification.created_at
+                    )}
+                  </small>
+                </div>
 
+                {!notification.is_read && (
+                  <button
+                    type="button"
+                    className="notificationsPanel__readButton"
+                    disabled={actionLoading}
+                    onClick={() =>
+                      handleRead(notification.id)
+                    }
+                  >
+                    Marcar leída
+                  </button>
+                )}
+              </article>
+            ))}
           </div>
 
           {pagination.totalPages > 1 && (
             <div className="notificationsPanel__pagination">
-
               <button
                 type="button"
                 className="btn btn--outline"
@@ -401,17 +381,14 @@ export function NotificationsPanel({
               >
                 Siguiente
               </button>
-
             </div>
           )}
-
         </div>
       ) : (
         <p className="notificationsPanel__empty">
           No hay notificaciones.
         </p>
       )}
-
     </div>
   );
 }

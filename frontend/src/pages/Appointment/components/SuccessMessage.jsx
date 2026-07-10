@@ -6,7 +6,7 @@ import {
   FaHome,
   FaWhatsapp,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./SuccessMessage.css";
 
@@ -61,6 +61,19 @@ export function SuccessMessage({
   appointment,
   onCreateAnother,
 }) {
+  const navigate = useNavigate();
+
+  function handleGoHome() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      navigate("/");
+    }, 150);
+  }
+
   return (
     <section className="successMessage card">
       <div className="successMessage__icon">
@@ -77,7 +90,8 @@ export function SuccessMessage({
         </h2>
 
         <p className="successMessage__text">
-          Tu solicitud fue registrada correctamente. El administrador revisará el turno y te enviaremos un correo cuando la reserva sea confirmada.
+          Tu solicitud fue registrada correctamente. El administrador revisará
+          el turno y te enviaremos un correo cuando la reserva sea confirmada.
         </p>
       </div>
 
@@ -85,6 +99,7 @@ export function SuccessMessage({
         <div className="successMessage__details">
           <div>
             <span>Cliente</span>
+
             <strong>
               {appointment.customer_name}
             </strong>
@@ -92,20 +107,27 @@ export function SuccessMessage({
 
           <div>
             <span>Fecha</span>
+
             <strong>
-              {formatDate(appointment.appointment_date)}
+              {formatDate(
+                appointment.appointment_date
+              )}
             </strong>
           </div>
 
           <div>
             <span>Horario</span>
+
             <strong>
-              {formatTime(appointment.start_time)}
+              {formatTime(
+                appointment.start_time
+              )}
             </strong>
           </div>
 
           <div>
             <span>Estado</span>
+
             <strong className="successMessage__status">
               Pendiente de confirmación
             </strong>
@@ -114,27 +136,37 @@ export function SuccessMessage({
       )}
 
       <div className="successMessage__info">
-        <strong>Tené paciencia mientras confirmamos tu turno.</strong>
+        <strong>
+          Tené paciencia mientras confirmamos tu turno.
+        </strong>
+
         <span>
-          Si pasa un rato y no recibís respuesta, revisá el correo no deseado o escribinos desde la página de inicio.
+          Si pasa un rato y no recibís respuesta,
+          revisá el correo no deseado o escribinos
+          desde la página de inicio.
         </span>
       </div>
 
       <div className="successMessage__demoNotice">
         <strong>Importante:</strong>
+
         <span>
-          Esta es una página ficticia creada como proyecto web. La reserva no corresponde a una barbería real, así que no vayas a cortarte el pelo por este turno jajaja.
+          Esta es una página ficticia creada como
+          proyecto web. La reserva no corresponde
+          a una barbería real, así que no vayas a
+          cortarte el pelo por este turno jajaja.
         </span>
       </div>
 
       <div className="successMessage__actions">
-        <Link
-          to="/"
+        <button
+          type="button"
           className="btn btn--secondary successMessage__button"
+          onClick={handleGoHome}
         >
           <FaHome />
           Ir al inicio
-        </Link>
+        </button>
 
         <button
           type="button"
